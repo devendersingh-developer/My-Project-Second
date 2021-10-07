@@ -1,0 +1,47 @@
+<apex:page showHeader="false" applyHtmlTag="false" docType="html-5.0">
+
+          <div ng-app="MyApp">
+          <div ng-controller="myController">
+                  <table class="table">
+                      {{Name}}
+                      /*<thead>
+                          <tr>
+                              <th>First Name</th>
+                              <th>Last Name</th>
+                              <th>Phone</th>
+                              <th>Email</th>
+                    </tr>
+             </thead>
+                      <tbody>
+                          <tr ng-repeat="contactVar in DataList">
+                              <td>{{contactVar.FirstName}}</td>
+                              <td>{{contactVar.LastName}}</td>
+                              <td>{{contactVar.Phone}}</td>
+                              <td>{{contactVar.Email}}</td>
+                          </tr>
+                      </tbody>
+              </table>*/
+              </div>
+          </div>
+    
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"/>
+<script>
+ var app = angular.module('MyApp',[]);  
+  app.controller('myController',function($scope,$http){  
+      $scope.Name="Hello Singh";
+      $scope.DataList=[
+          {
+             "FirstName" : "Amit",
+             "LastName" : "Kumar",
+             "Phone" : "9971602208",
+             "Email" : "AmitKumar843@gmail.com"
+         },
+          {
+             "FirstName" : "Chibi",
+             "LastName" : "Singh",
+             "Phone" : "9898989878",
+             "Email" : "chibiSingh843@gmail.com"
+         }]
+      )};
+</script>
+</apex:page>

@@ -1,0 +1,55 @@
+<apex:page sidebar="false" controller="DataLoadTestingClass">
+ <apex:form >
+     <div style="border:1px solid; width:200px;">
+    <div style="height:30px;width:150px;margin-top:20px;margin-left:20px;
+                     font-size:15px;color:blue;">
+             DATA INSERT
+         </div>
+     <table>
+         <tr>
+             <td>
+                 Fare
+             </td>
+             <td>
+                 <apex:inputtext value="{!Fare}"/>
+             </td>
+             </tr>
+             <tr>
+             <td>
+                 food
+             </td>
+             <td>
+                 <apex:inputtext value="{!food}" />
+             </td>
+             </tr>
+             <tr>
+             <td>
+                 No of Passenger
+             </td>
+             <td>
+                 <apex:inputtext value="{!NoOfPassenger}" />
+             </td>
+             </tr>
+            
+             <tr>
+             <td>
+                 Name
+             </td>
+             <td>
+                 <apex:inputtext value="{!Name}"/>
+             </td>
+         </tr>
+         <tr >
+             <td colspan="2" align="center">
+                 <apex:commandButton value="INSERT" style="color:red;" 
+                 action="{!fncSaveEmployee}" />
+             </td>
+         </tr>
+     </table>
+     </div>
+    
+    
+    
+ </apex:form>
+
+</apex:page>

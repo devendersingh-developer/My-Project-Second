@@ -1,0 +1,107 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:attribute name="carTypes" type="List" default="Sports Car,Luxury Car,Van"/>
+     <aura:attribute name="carTypesFromInit" type="List" default="Sports Car,Luxury Car,Van"/>
+    
+    <aura:attribute name="isNewAvailable" type="Boolean" default="false"/>
+    <aura:attribute name="newLable" type="String" default="New Button"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="render" value="{!this}" action="{!c.handelrender}" />
+    <aura:handler name="change" value="{!v.salaryIncome.Net_Salary__c}" action="{!c.testChange}"/>
+    <lightning:layout horizontalAlign='center' >
+        <lightning:layoutItem padding='around-medium'>
+            <lightning:select name='selectItem' aura:id="CarType" label="All Types" variant="lable-hidden" value="Van"
+                              onchange="{!c.onSelectEvent}">
+                <option  value="All type" text="All type"/>
+                <aura:iteration items="{!v.carTypesFromInit}" var="row">
+                    <option  value="{!row}" text="{!row}"/>
+                </aura:iteration>
+            </lightning:select>            
+        </lightning:layoutItem>
+        
+        <lightning:layoutItem padding='around-medium'>
+            <lightning:button label="Search" onclick="{!c.onSearchClick}" variant="brand"/>
+            <lightning:button label="New" variant="neutral"/>
+        </lightning:layoutItem>
+        
+        <lightning:layoutItem padding='around-medium'>
+            <lightning:button label="Toggle Button" onclick="{!c.onToggleButton}" variant="brand"/>
+            
+            <aura:if isTrue="{!v.isNewAvailable}">
+                <lightning:button label="{#v.newLable}" variant="neutral"/>
+                <aura:set attribute="else">
+                    new button can't be added here.
+                </aura:set>
+            </aura:if>
+        </lightning:layoutItem>
+    </lightning:layout>
+    
+    <aura:iteration items="{!v.carTypes}" var="row">
+        {!row}<br></br>
+    </aura:iteration>
+    <!-- lightning:layout multipleRows="true">
+        <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="4" largeDeviceSize="6" >
+            <lightning:select name='selectItem' aura:id='CarType' label="All Types" variant="lable-hidden">
+                <option  value="" text="All type"/>
+                <option  value="" text="Sports Car"/>
+                <option  value="" text="Luxury Car"/>
+            </lightning:select>            
+        </lightning:layoutItem>
+        <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="4" largeDeviceSize="6" >
+            <lightning:button label="Search" variant="brand"/>
+            <lightning:button label="New" variant="neutral"/>
+        </lightning:layoutItem>
+    </lightning:layout -->
+   <div class="c-container">
+        <lightning:layout>
+            <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                <div class="custom-box">1</div>
+            </lightning:layoutItem>
+            <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                <div class="custom-box">2</div>
+            </lightning:layoutItem>
+            <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                <div class="custom-box">3</div>
+            </lightning:layoutItem>
+            <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                <div class="custom-box">4</div>
+            </lightning:layoutItem>
+             <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                <div class="custom-box">5</div>
+            </lightning:layoutItem>
+             <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                <div class="custom-box">6</div>
+            </lightning:layoutItem>
+             <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                <div class="custom-box">7</div>
+            </lightning:layoutItem>
+             <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                <div class="custom-box">8</div>
+            </lightning:layoutItem>
+             <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                <div class="custom-box">9</div>
+            </lightning:layoutItem>
+             <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                <div class="custom-box">10</div>
+            </lightning:layoutItem>
+             <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                <div class="custom-box">11</div>
+            </lightning:layoutItem>
+             <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                <div class="custom-box">12</div>
+            </lightning:layoutItem>
+             <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                <div class="custom-box">13</div>
+            </lightning:layoutItem>
+             <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                <div class="custom-box">14</div>
+            </lightning:layoutItem>
+             <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                <div class="custom-box">15</div>
+            </lightning:layoutItem>
+             <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                <div class="custom-box">16</div>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+    
+</aura:component>

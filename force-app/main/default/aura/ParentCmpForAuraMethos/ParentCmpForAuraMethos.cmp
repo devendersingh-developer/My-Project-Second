@@ -1,0 +1,4 @@
+<aura:component implements="force:appHostable" >
+    <c:ChildCmpForAuraMethos aura:id='childComp'/>
+    <lightning:button name="Invoke Child Action" label="Invoke child Action" onclick="{!c.doClick}"/>
+</aura:component>

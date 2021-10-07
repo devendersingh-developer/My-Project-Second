@@ -1,0 +1,38 @@
+<template>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered list-table">
+    <thead>
+    <tr class="slds-line-height_reset">
+    <th class="" scope="col">
+    <div class="slds-truncate" title="SAP ID">AppApplicant Name.</div>
+    </th>
+    <th class="" scope="col">
+    <div class="slds-truncate" title="SAP ID">Report Type.</div>
+    </th>
+    <th class="" scope="col">
+    <div class="slds-truncate" title="Item Code">Remarks</div>
+    </th>
+    <th class="" scope="col">
+    <div class="slds-truncate" title="Item Code">Status</div>
+    </th>
+    </tr>
+    </thead>
+    <tbody>
+    <template for:each={ListOfUserDetails} for:item="lineItem">
+    <tr key={lineItem.Id}  class="slds-hint-parent">
+    <td data-label="Item Code" data-record-id={lineItem.Id}  onclick={openModal}>
+    <a>{lineItem.Name}</a>
+    </td>
+    <td data-label="Item Description">
+    <div class="slds-truncate" title="Item Description">{lineItem.Email}</div>
+    </td>
+    <td data-label="Item Description">
+    <div class="slds-truncate" title="Item Description">{lineItem.MobileNumber }</div>
+    </td>
+    <td data-label="Item Description">
+    <div class="slds-truncate" title="Item Description">{lineItem.PanCardNumber}</div>
+    </td>
+    </tr>
+    </template>
+    </tbody>
+    </table>
+</template>

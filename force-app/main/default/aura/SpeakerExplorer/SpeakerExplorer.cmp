@@ -1,0 +1,14 @@
+<aura:component implements="force:appHostable" controller="SpeakerExplorer" >
+    <aura:handler name="SearEvent" event="c:SpeakerEvent" action="{!c.handleCompEvent}" />
+    <aura:attribute name='ContactList' type='Object'/>
+    <div>
+        <c:SpeakerHeader TagLine="SpeakerExplorer" Message="Search and order Beer in a very easy Manner!"/>
+    </div>
+    <div>
+        <c:SpeakerSearch/>
+    </div>
+    <div>
+      
+        <c:SpeakerListcomponent recordList="{!v.ContactList}"/>
+    </div>
+</aura:component>

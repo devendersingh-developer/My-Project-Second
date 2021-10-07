@@ -1,0 +1,5 @@
+<aura:component implements="force:appHostable" >
+	<aura:method name="child" action="{!c.handleChild}" access="public">
+        <aura:attribute name="param1" type="string"/>
+    </aura:method>
+</aura:component>

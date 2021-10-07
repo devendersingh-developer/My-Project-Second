@@ -1,0 +1,33 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global">
+   <!-- <div class="slds-p-around_small">
+        <h1 class="red">hi every one i m in lightning component</h1>
+        <br/>
+        <h1 style="background-color:red; color:white">hi every one i m in lightning component</h1>
+        <br/>
+        <div>
+            <table>
+                <tr>
+                    <td class="green">Name</td>
+                    <td class="green">devender Singh</td>
+                </tr>
+            </table>
+        </div>
+    </div>-->
+    
+    <aura:attribute name="wholeNumber" type="integer" access="public"/>
+    <aura:attribute name="percentage" type="integer" access="public"/>
+    
+    <div class="slds-p-around_small">
+        <lightning:input type="number" name="input1" label="Enter a number" 
+                         value="{!v.wholeNumber}" />
+        <lightning:input type="number" name="input1" label="Enter a percentage" 
+                         value="{!v.percentage}" />
+        <br/>
+        {!v.wholeNumber}  
+        <br/>
+        {!v.percentage}
+        <br/>
+        <br/>
+        {!mult(v.wholeNumber,v.percentage)}
+    </div>
+</aura:component>

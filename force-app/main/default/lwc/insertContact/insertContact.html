@@ -1,0 +1,56 @@
+<template>
+    <lightning-card title="Create Contact Record">
+        <template if:true={conRecord}>
+            <div class="slds-m-around--xx-large">
+                <div class="container-fluid">
+                    <div class="form-group">
+                        <lightning-input label="First Name" name="conFirstName" required="required" type="text"
+                            value={conRecord.FirstName} onchange={handleFirstNameChange}></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Last Name" name="conLastName" required="required" type="text"
+                            value={conRecord.LastName} onchange={handleFirstNameChange}></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Phone Number" name="conPhone" type="number"
+                            value={conRecord.Phone} onchange={handleFirstNameChange}></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Email" name="conEmail" type="text" value={conRecord.Email}
+                            onchange={handleFirstNameChange}></lightning-input>
+                    </div>
+                    
+                    <div class="form-group">
+                        <lightning-input label="Top Secret" name="conTopSecret" type="text" value={conRecord.Top_Secret__c}
+                            onchange={handleFirstNameChange}></lightning-input>
+                    </div>
+
+                    <div class="form-group">
+                        <template if:true={propertyOrFunction.data}>
+                            <lightning-combobox name="progress"
+                            label="Role"
+                            value={value}
+                            placeholder="-Select-"
+                            options={propertyOrFunction.data.values}
+                            onchange={handleFirstNameChange} >
+                    </lightning-combobox>
+                        </template>    
+                    </div>
+                </div>
+                <br />
+                <lightning-button label="Submit" onclick={createRec} variant="brand"></lightning-button>
+            </div>
+
+
+            <lightning-card title="Get Current Location in Lightning Web Component">
+                <div class="slds-p-around_small">
+                    <lightning-button variant="brand" 
+                            label="Get Current Location"
+                            onclick={handleClick}>
+                        </lightning-button> <br/><br/>
+                    <lightning-map map-markers={lstMarkers} zoom-level={zoomlevel} ></lightning-map>
+                </div>
+            </lightning-card>
+        </template>
+    </lightning-card>
+</template>

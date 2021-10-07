@@ -1,0 +1,61 @@
+<apex:page controller="BillDeskAPI" >
+    <h1>
+        Hi i m from VF
+    </h1>
+    
+    <apex:form >
+        <script>
+        
+         window.onload = function () {
+            alert("******* in load ****** ");
+            var body = XMLHttpRequest.response;
+             alert("******* in body ****** "+body);
+        }
+        
+        var request = new XMLHttpRequest();
+        request.open("GET", "foo.txt", true);
+        request.send();
+        
+        request.onreadystatechange = function() {
+            if(this.readyState == this.HEADERS_RECEIVED) {
+                
+                // Get the raw header string
+                var headers = request.getAllResponseHeaders();
+                alert('hi*******>>>>>> headers '+headers);
+                // Convert the header string into an array 
+                // of individual headers
+                var arr = headers.trim().split(/[\r\n]+/);
+                alert('arr*******>>>>>> arr '+arr);
+                // Create a map of header names to values
+                var headerMap = {};
+                arr.forEach(function (line) {
+                    var parts = line.split(': ');
+                    var header = parts.shift();
+                    var value = parts.join(': ');
+                    headerMap[header] = value;
+                });
+                console.log('hi*******>>>>>> headerMap*** ' +headerMap);
+            }
+        }
+        
+        var client = new XMLHttpRequest();
+        client.open("GET", "unicorns-are-teh-awesome.txt", true);
+        client.send();
+        
+        client.onreadystatechange = function() {
+            alert('contentType*******>>>>>> contentType step 1 ');
+            if(this.readyState == this.HEADERS_RECEIVED) {
+                var contentType = client.getResponseHeader("PaRes");
+                alert('contentType*******>>>>>> contentType '+contentType);
+                if (contentType != my_expected_type) {
+                    client.abort();
+                }
+            }
+        }
+        </script>
+        <apex:outputLabel for="inpdata">
+            
+            Enter Data:&nbsp; {!headerdata}
+        </apex:outputLabel>
+    </apex:form>
+</apex:page>

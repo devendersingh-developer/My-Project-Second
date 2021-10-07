@@ -1,0 +1,18 @@
+<template>
+    <lightning-card>
+        <lightning-layout vertical-align="center">
+            <lightning-layout-item padding="around-small">
+                <lightning-input label="Enter Pancard Number" 
+                required="required" type="text" onchange={jsHandlerPanCrad}></lightning-input>
+                <span if:true={panerror} id="lblPANCard" style="color:red;" class="error">Invalid PAN Number</span>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                
+                <lightning-button variant="brand" label="Submit" onclick={jsHandelOnCheck} 
+                 class="slds-m-left_x-small"></lightning-button>
+                
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+    
+</template>

@@ -1,0 +1,5 @@
+<apex:page controller="clas1">
+ {!mymethod}<br/>
+ {!mymethod2.Name}<br/>
+ {!mymethod2.Industry}<br/>
+</apex:page>

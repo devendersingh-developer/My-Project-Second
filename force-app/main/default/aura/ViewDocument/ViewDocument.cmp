@@ -1,0 +1,71 @@
+<!--
+- Created on 01/06/2021 to View documents
+--> 
+<aura:component controller="RCUDocumentsController" 
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader"
+                access="global">
+    <aura:html tag="style">
+        .slds-modal__container{
+        max-width: 90rem !important;
+        width: 60% !important;
+        height : 100% !important;
+        }
+    </aura:html>
+    <aura:attribute name="files" type="FileUtility[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<lightning:card>
+        <aura:set attribute="title" >
+           <lightning:icon iconName="standard:file" alternativeText="Event" title="Event" />  View Documents
+        </aura:set>
+        <div class="slds-table--header-fixed_container" style="height:250px;">
+          <div class="slds-scrollable_y" style="height:100%;">
+          <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout slds-table_resizable-cols slds-table--header-fixed">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th scope="col" class="slds-is-resizable" width="60%">
+                        <div class="slds-truncate slds-cell-fixed" title="Name">Name</div>
+                    </th >
+                    <th scope="col" class="slds-is-resizable" width="15%">
+                        <div class="slds-truncate slds-cell-fixed" title="Status">Category</div>
+                    </th>
+                    <th scope="col" class="slds-is-resizable" width="10%">
+                        <div class="slds-truncate slds-cell-fixed" title="Preview">Delete</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+           <aura:iteration items="{!v.files}" var="file" indexVar="index">
+               <tr class="slds-hint-parent">
+                   <td data-label="Name" scope="row">      
+                       <div class="slds-truncate" title="{!file.fileName}">
+                           <aura:if isTrue="{!!file.isAttachment}">
+                               <a href="javascript:void(0)" 
+                                  id="{!file.parentId}" 
+                                  onclick="{!c.previewFile}">{!file.fileName} </a>  
+                               <aura:set attribute="else">
+                                   <a href="javascript:void(0)" 
+                                      id="{!file.recordId}" 
+                                      onclick="{!c.previewAttachment}">{!file.fileName}</a>  
+                               </aura:set>
+                           </aura:if>    
+                       </div>
+                   </td >
+                   <td scope="row" data-label="Type">
+                       <div class="slds-truncate" title="{!file.category}">{!file.category}</div>
+                   </td>
+                   <td scope="row">    
+                       <lightning:buttonIcon iconName="utility:delete"
+                                             size="small"
+                                             name="{!file.parentId}"
+                                             value="{!file.recordId}"
+                                             class="{!file.isAttachment}"
+                                             onclick="{!c.deleteFile}" />
+                   </td>
+               </tr>
+           </aura:iteration>
+         </tbody>
+        </table>
+      </div>
+     </div>
+    </lightning:card>
+</aura:component>

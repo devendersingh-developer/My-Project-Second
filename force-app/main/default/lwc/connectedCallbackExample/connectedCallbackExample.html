@@ -1,0 +1,72 @@
+<template>
+    <div id="waiting" if:false={ready}>Loading…</div>
+    <div id="display" if:true={ready}>
+        <div>Name: {name}</div>
+        <div>Description: {description}</div>
+        <div>Category: {category}</div>
+        <div>Material: {material}</div>
+        <div>Price: {price}</div>
+        <div><img src={pictureUrl}/></div>
+    </div>
+    <div class="slds-m-around_medium">
+        <template for:each={contacts} for:item="item" for:index="index">
+            <li key={item.Id}>
+             <lightning-formatted-text value={item.Name}></lightning-formatted-text>
+             <lightning-formatted-text value={item.Title}></lightning-formatted-text>
+            </li>
+        </template>
+    </div>
+    <div>
+        <lightning-card title="This is example of Apex to WLC">
+             <lightning-layout-item padding="around-small" >
+                    <template if:true={MapDemoRecords}>
+                        I Have some Values 
+                        {MapDemoRecords}
+                    </template>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <template  for:each={maps} for:item="item">
+                    {item.key} ------>  {item.value}
+              
+                </template>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-button label="Call JS" onclick={jsHandelClick} ></lightning-button>
+            </lightning-layout-item>
+        </lightning-card>
+    </div>
+    <div>
+        <lightning-card title="Apex Call from lWC with Search parameter">
+            <lightning-layout  vertical-align="center">
+                <lightning-layout-item padding="around-small">
+                    <lightning-input label="Find Contact" value={SearchText} onchange={jsHandelChange} >
+
+                    </lightning-input>
+                </lightning-layout-item>
+
+                <template  for:each={lstContacts} for:item="Item" for:index="index">
+                    <lightning-layout key={lstContacts.id}>
+                        <p>{Item.Name}</p>
+                        <p><lightning-formatted-email value={Item.Email}></lightning-formatted-email> </p>
+                        <p><lightning-formatted-phone value={Item.phone}></lightning-formatted-phone> </p>
+                    </lightning-layout>
+                </template>
+            <lightning-layout-item>
+                    <template  for:each={lstContactsButton} for:item="Item" for:index="index">
+                    <lightning-layout key={Item.id}>
+                        <p>{Item.Name}</p>
+                        <p><lightning-formatted-email value={Item.Email}></lightning-formatted-email> </p>
+                        <p><lightning-formatted-phone value={Item.phone}></lightning-formatted-phone> </p>
+                    </lightning-layout>
+                </template>
+            </lightning-layout-item>
+
+
+                <lightning-layout-item padding="around-small">
+                    <lightning-button label="Call JS Button" onclick={jsHandelButton} ></lightning-button>
+                </lightning-layout-item>
+
+             </lightning-layout>
+        </lightning-card>
+    </div>
+</template>

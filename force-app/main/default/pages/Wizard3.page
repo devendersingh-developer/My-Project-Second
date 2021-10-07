@@ -1,0 +1,134 @@
+<apex:page controller="CreatingWizard" showHeader="false" sidebar="false" standardStylesheets="false">
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">    
+<head>
+  <title>Nitin Indora</title>
+  <apex:stylesheet value="{!URLFOR($Resource.SLDS080, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+</head>
+<div class="slds">
+<c:WizerdHeaderVf />
+ 
+<div data-reactid=".5.0.1" role="alert" class="slds-notify slds-notify--alert slds-theme--success slds-theme--alert-texture slds-m-top--large">
+    <span class="slds-assistive-text">Success</span>
+    <h2><svg class="slds-icon icon-text-email slds-icon--small slds-m-right--x-small" aria-hidden="true">
+        <use xlink:href="{!URLFOR($Resource.SLDS080, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/></svg>
+        <span>New Customer Opportunity Step 3 of 3</span>
+    </h2>
+</div>
+ 
+<apex:form >
+  <div class="slds-card slds-m-top--large">
+  <div class="slds-card__header slds-grid">
+    <div class="slds-media slds-media--center slds-has-flexi-truncate">
+      <div class="slds-media__figure">
+        <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--small">
+          <use xlink:href="{!URLFOR($Resource.SLDS080, '/assets/icons/standard-sprite/svg/symbols.svg#contact')}"></use>
+        </svg>
+      </div>
+      <div class="slds-media__body">
+        <h2 class="slds-text-heading--small slds-truncate">Confirmation</h2>
+      </div>
+    </div>
+    <div class="slds-no-flex">
+       
+    </div>
+  </div>
+  <div class="slds-card__body">
+    <ul>
+      <li class="slds-tile slds-hint-parent">
+        <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+          <p class="slds-tile__title slds-truncate"><a href="#">Account Information</a></p>
+           
+        </div>
+        <div class="slds-tile__detail">
+          <dl class="dl--horizontal slds-text-body--small">
+            <dt class="slds-dl--horizontal__label">
+              <p class="slds-truncate">Account Name:</p>
+            </dt>
+            <dd class="slds-dl--horizontal__detail slds-tile__meta">
+              <p class="slds-truncate"><apex:outputText value="{!account.name}"/></p>
+            </dd>
+            <dt class="slds-dl--horizontal__label">
+              <p class="slds-truncate">Account Site:</p>
+            </dt>
+            <dd class="slds-dl--horizontal__detail slds-tile__meta">
+              <p class="slds-truncate"><apex:outputText value="{!account.site}"/></p>
+            </dd>
+          </dl>
+        </div>
+      </li>
+      <li class="slds-tile slds-hint-parent">
+        <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+          <p class="slds-tile__title slds-truncate"><a href="#">Contact Information</a></p>
+        </div>
+        <div class="slds-tile__detail">
+          <dl class="dl--horizontal slds-text-body--small">
+            <dt class="slds-dl--horizontal__label">
+              <p class="slds-truncate">First Name:</p>
+            </dt>
+            <dd class="slds-dl--horizontal__detail slds-tile__meta">
+              <p class="slds-truncate"><apex:outputText value="{!contact.firstName}"/></p>
+            </dd>
+            <dt class="slds-dl--horizontal__label">
+              <p class="slds-truncate">Last Name:</p>
+            </dt>
+            <dd class="slds-dl--horizontal__detail slds-tile__meta">
+              <p class="slds-truncate"><apex:outputText value="{!contact.lastName}"/></p>
+            </dd>
+           
+          <dt class="slds-dl--horizontal__label">
+              <p class="slds-truncate">Phone:</p>
+            </dt>
+            <dd class="slds-dl--horizontal__detail slds-tile__meta">
+              <p class="slds-truncate"><apex:outputText value="{!contact.phone}"/></p>
+            </dd>
+           
+          <dt class="slds-dl--horizontal__label">
+              <p class="slds-truncate">Role:</p>
+            </dt>
+            <dd class="slds-dl--horizontal__detail slds-tile__meta">
+              <p class="slds-truncate"><apex:outputText value="{!role.role}"/></p>
+            </dd>
+          </dl>
+        </div>
+      </li>
+      <li class="slds-tile slds-hint-parent">
+        <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+          <p class="slds-tile__title slds-truncate"><a href="#">Opportunity Information</a></p>
+        </div>
+        <div class="slds-tile__detail">
+          <dl class="dl--horizontal slds-text-body--small">
+            <dt class="slds-dl--horizontal__label">
+              <p class="slds-truncate">Opportunity Name:</p>
+            </dt>
+            <dd class="slds-dl--horizontal__detail slds-tile__meta">
+              <p class="slds-truncate"><apex:outputText value="{!opportunity.name}"/></p>
+            </dd>
+            <dt class="slds-dl--horizontal__label">
+              <p class="slds-truncate">Amount:</p>
+            </dt>
+            <dd class="slds-dl--horizontal__detail slds-tile__meta">
+              <p class="slds-truncate"><apex:outputText value="{!opportunity.amount}"/></p>
+            </dd>
+          
+          <dt class="slds-dl--horizontal__label">
+              <p class="slds-truncate">Close Date:</p>
+            </dt>
+            <dd class="slds-dl--horizontal__detail slds-tile__meta">
+              <p class="slds-truncate"><apex:outputText value="{!opportunity.closeDate}"/></p>
+            </dd>
+          </dl>
+        </div>
+      </li>
+    </ul>
+     
+    <apex:commandButton action="{!step2}" value="Previous" styleClass="slds-button slds-button--brand slds-m-top--medium"/>
+    <apex:commandButton action="{!save}" value="Save" styleClass="slds-button slds-button--brand  slds-m-left--medium slds-m-top--medium"/>
+  </div>
+   
+</div>
+  
+     
+</apex:form>
+</div>
+</html>
+</apex:page>

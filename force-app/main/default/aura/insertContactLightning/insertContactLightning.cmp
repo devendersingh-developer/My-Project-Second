@@ -1,0 +1,15 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,flexipage:availableForAllPageTypes,force:hasSObjectName,force:hasRecordId,lightning:actionOverride" access="global" >
+    <aura:html tag="style">
+        .slds-modal__container{ 
+        height : ; width: 50%; min-width: 150px; min-height:400px;
+        } 
+        .modal-body{ 
+        height :  !important; 
+        min-height: 300px !important; 
+        } 
+        .slds-modal__footer{ 
+        display: inline !important; 
+        }
+    </aura:html>      
+    <c:insertContact/>
+</aura:component>

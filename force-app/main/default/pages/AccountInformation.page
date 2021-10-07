@@ -1,0 +1,72 @@
+<apex:page controller="clsPopulatePicklist">
+    <script>
+    function fncShowMsg()
+    {
+        // document.getElementById('j_id0:j_id2:j_id3:Msg').style.display='block';
+    }
+    function fnchideMsg()
+    {
+        // document.getElementById('j_id0:j_id2:j_id3:Msg').style.display='none';
+    }
+    </script>
+  
+    <apex:form > 
+        <apex:pageBlock title="Account Info">
+            <apex:outputText style="display:none"  id="Msg" value="When you will select this account its details will be displayed below"></apex:outputText>
+            <apex:pageBlockSection columns="3" >
+                <apex:pageBlockSectionItem >
+                    <apex:actionRegion >
+                        <apex:outputlabel value="Account"/>
+                        <apex:selectList value="{!Selectedobject}" title="Product" size="1" id="products">
+                            <apex:selectOptions value="{!objectOptions}" />
+                            <apex:actionSupport event="onchange" action="{!fncFillContact}" rerender="versions" />
+                        </apex:selectList>
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+          
+                <apex:pageBlockSectionItem >
+                    <apex:actionRegion >
+                        <apex:outputlabel value="Contact"/>
+                        <apex:selectList value="{!selectedObjectContact}" title="Version" size="1" id="versions">
+                            <apex:selectOptions value="{!objectOptionsContact}" />
+                             <apex:actionSupport event="onchange" action="{!fncFillCases}" rerender="Case" />
+                        </apex:selectList>
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:actionRegion >
+                        <apex:outputlabel value="Cases"/>
+                        <apex:selectList value="{!selectedObjectCases}" title="Version" size="1" id="Case">
+                            <apex:selectOptions value="{!objectOptionsCases}" />
+                             <apex:actionSupport event="onchange" action="{!checkValue}" rerender="OrderInformationBlock" />
+                        </apex:selectList>
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>        
+        </apex:pageBlock>
+        <br/>
+        
+        <apex:pageBlock id="OrderInformationBlock" >
+            <apex:pageBlockTable value="{!acc}" var="a">
+                <apex:column value="{!a.Id}"/>
+                <apex:column value="{!a.Name}"/>
+                <apex:column value="{!a.No_Of_Contact__c}"/>
+                <apex:column value="{!a.No_of_female__c}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
+
+ 		   <!--<apex:pageBlockSection columns="3"> 
+                <apex:outputlabel value="Account Name"/>
+                <apex:selectList value="{!Selectedobject }" size="1" onmouseover="fncShowMsg();" onmouseout="fnchideMsg()" multiselect="false">
+                    <apex:selectoptions value="{!objectOptions}"/>   
+                    <apex:actionSupport event="onchange" action="{!fncFillContact}" reRender="OrderInformationContact" />
+                </apex:selectList>
+               </apex:pageBlockSection>
+               <apex:outputlabel value="Contact Name"/>
+                <apex:selectList id="OrderInformationContact" value="{!selectedObjectContact}" size="1">
+                    <apex:selectoptions value="{!objectOptionsContact}"/>   
+                    <apex:actionSupport event="onchange"/>
+                </apex:selectList>-->

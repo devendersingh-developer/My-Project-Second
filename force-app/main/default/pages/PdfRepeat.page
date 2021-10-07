@@ -1,0 +1,121 @@
+<apex:page Controller="pdfclass" renderAs="pdf" showheader="false">
+    
+    <head>      
+        <style type="text/css"  media="print">          
+            @page {                                                    
+            @top-center {                  
+            content: element(header);   
+            }
+            size: 210mm 297mm;
+            margin: 15mm;
+            margin-right:0mm;
+            
+            margin-top: 4.215cm;
+            margin-bottom: 2.80cm;
+            margin-left: 1.27cm;
+            margin-right:1cm;
+            @bottom-left {
+            content: element(footer);
+            }          
+            }                                
+            position: running(header);
+            div.header {               
+            padding: 10px;             
+            position: running(header);
+            
+            height: 80px;
+            margin-bottom: 15px;
+            
+            }          
+            div.footer {               
+            display: block;            
+            padding: 5px;              
+            position: running(footer); 
+            
+            clear: both;
+            margin-top: 15px;
+            
+            }                
+            
+            .pagenumber:before {               
+            content: counter(page);            
+            }                      
+            .pagecount:before {            
+            content: counter(pages);           
+            }                  
+            
+            .labelcls
+            {
+            margin-left:400px; font-size:25px; font-weight:bold;
+            
+            }
+            
+            
+        </style>           
+    </head>    
+    <apex:form >
+        <!--- *************************** HEADER START******************************-->
+        
+        <div class="header" width="100%">       
+            <div><apex:image value=""/>
+                <apex:outputLabel styleclass="labelcls">Accounts (Your Header)</apex:outputLabel>
+            </div>  
+        </div> 
+        
+        <!--- *************************** FOOTER STARTS ******************************-->
+        <div class="footer" style="font-size:10px;">       
+            <apex:outputLabel style="font-size:10px;">
+                The Account are present in our organization.    (Your footer)
+            </apex:outputLabel>           
+            <apex:outputText style="font-size:10px; margin-left:40px; margin-right:50px;" value="Printed on  {0,date,dd.MM.yyyy }" >
+                &nbsp;&nbsp;
+                <apex:param value="{!NOW()}" />
+            </apex:outputText>
+            Page <span class="pagenumber"/> of <span class="pagecount"/>
+        </div> 
+        <!--- *************************** FOOTER STARTS ******************************-->    <!-- please past your code witch you want display -->
+        <div  >
+            
+            <apex:pageBlock id="out">
+                
+                <apex:variable value="{!1}" var="num"/>      
+                <apex:repeat value="{!Acc}" var="R"  >
+                    <!-- -------------FOR PAGINATION START--------------- -->
+                    <apex:outputpanel rendered="{!num == 1  || num == 11 || num == 31 || num == 51 || num == 71 || num == 91 || num == 111 || num == 131}" >
+                        <table border="1" width="100%" rules="cols" >   
+                            <tr>  <td align="left" width="10%">
+                                <apex:outputLabel style="font-weight:bold; " >S.No</apex:outputLabel> </td>
+                                <td align="center" width="40%" >
+                                    <apex:outputLabel style="font-weight:bold; ">Name</apex:outputLabel></td>
+                                <td align="center" width="25%">
+                                    <apex:outputLabel style="font-weight:bold;  ">Phone</apex:outputLabel></td>
+                                <td align="center" width="25%" >
+                                    <apex:outputLabel style="font-weight:bold; ">Fax</apex:outputLabel></td>
+                            </tr>
+                        </table>  
+                    </apex:outputpanel>
+                    
+                    <table width="100%" border="1" rules="cols">
+                        
+                        <tr>
+                            <td align="left" width="10%">{!num}</td>
+                            <td align="center" width="40%">{!R.name}</td>
+                            <td align="center" width="25%">{!R.phone}</td>
+                            <td align="center" width="25%">{!R.Fax}</td>
+                        </tr>
+                        
+                    </table>
+                    
+                    <apex:outputpanel rendered="{!num == 10 || num ==30  || num == 50 || num == 70 || num == 90 || num == 110 || num == 130 || num == 150}">
+                        <!-- ----PAGENATION END -->                   
+                        <div style="page-break-after: always;">&nbsp; </div>
+                        
+                    </apex:outputpanel>      
+                    <apex:variable value="{!num+1}" var="num"/>
+                </apex:repeat>
+                
+            </apex:pageBlock><br/>
+        </div>
+        
+    </apex:form>
+</apex:page>

@@ -1,0 +1,14 @@
+<aura:component >
+    <aura:registerEvent name="SearEvent" type="c:SpeakerEvent"/>
+	<div class='slds-var-p-around_x-small'>
+        <lightning:input
+                         Name="inline-serach-input" 
+                         label="Speaker Search"
+                         type="Search"
+                         variant="label-hidden"
+                         aura:id="searchInput"
+                         onchange="{!c.doSearch}"
+                         >
+        </lightning:input>
+    </div>
+</aura:component>

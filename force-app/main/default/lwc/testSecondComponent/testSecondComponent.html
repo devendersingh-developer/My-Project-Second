@@ -1,0 +1,29 @@
+<template>
+ <lightning-card title="This is my second component" icon-name="custom:custom4" >
+     <lightning-layout vertical-align="center">
+         <lightning-layout-item padding="around-small">
+             <lightning-formatted-text title="Name" value={Name}></lightning-formatted-text>
+         </lightning-layout-item>
+
+         <lightning-layout-item padding="around-small">
+            <lightning-formatted-text title="Title" value={Title}></lightning-formatted-text>
+        </lightning-layout-item>
+
+        <lightning-layout-item padding="around-small">
+            <lightning-formatted-email value={Email}></lightning-formatted-email>
+        </lightning-layout-item>
+
+        <lightning-layout-item padding="around-small">
+            <lightning-formatted-phone value={Phone}></lightning-formatted-phone>
+        </lightning-layout-item>
+
+     </lightning-layout>
+     <lightning-layout vertical-align="center">
+         <lightning-layout-item padding="around-small">
+             <lightning-button label="Call JS" variant="brand" onclick={handelClick}></lightning-button>
+
+         </lightning-layout-item>
+
+     </lightning-layout>
+ </lightning-card>   
+</template>

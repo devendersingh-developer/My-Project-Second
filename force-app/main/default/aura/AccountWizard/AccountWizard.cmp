@@ -1,0 +1,100 @@
+<aura:component implements="force:hasRecordId,force:lightningQuickAction">
+
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
+    <aura:attribute name="AccountVa" type="sObject[]" />
+    <aura:attribute name="ContactVa" type="sObject[]" />
+    <aura:attribute name="OpportunityVa" type="sObject[]" />
+    <aura:attribute name="next" type="boolean" default="true" />
+    
+    <div>
+        <lightning:layout class="slds-page-header slds-page-header--object-home">
+            <lightning:layoutItem>
+                <lightning:icon iconName="standard:scan_card" alternativeText="Contacts"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="horizontal-small">
+                <div class="page-section page-header">
+                    
+                    <h2 class="slds-text-heading--medium">Opportunity Wizard Step One</h2>
+                </div>
+            </lightning:layoutItem>
+            
+        </lightning:layout>
+<!-- <aura:if isTrue="{!v.next}">  -->
+     
+                <p class="slds-p-horizontal_small">
+                    <form>
+                        <div>
+                            <h4>Account Information</h4>
+                            <lightning:input aura:id="AccountName" label="Account Name" value="{!v.AccountVa.name}" />
+                            <lightning:input aura:id="Accountsite" label="Account Site" value="{!v.AccountVa.site}" />
+                        </div>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <div>
+                            <h2>Contact Information</h2>
+                            <lightning:input aura:id="ContactFirstName" label="First Name" value="{!v.ContactVa.FirstName}" />
+                            <lightning:input aura:id="ContacLastName" label="Last Name" value="{!v.ContactVa.LastName }" />
+                        </div>
+                        <br></br>
+                        <lightning:button variant="brand" label="Next" title="Brand action" onclick="{! c.NextAccount }" />
+                    </form>
+                    
+                </p>
+      
+        <!-- </aura:if>
+        <aura:if isTrue="{!!v.next}"> -->
+           <!-- <c:OpportunityWizard /> -->
+             
+    <div>
+        <lightning:card title="Customer Infromation">
+            
+            <p class="slds-p-horizontal_small">
+                <form>
+                    <div>
+                        <h4>Opportunity Information</h4>
+                        <lightning:input aura:id="OpportunityName" label="Opportunity Name" value="{!v.OpportunityVa.name}" />
+                        <ui:inputDate  aura:id="oppClosedate" label="Close date" value="{!v.OpportunityVa.Closedate}" class="field"  displayDatePicker="true"  required="true"/>  
+                        
+                        <lightning:select value="{!v.pageNo}" name="select1" onchange="{! c.onChange }" label="How many tickets?" >
+                            <aura:iteration items="{!v.pageList}" var="option">
+                                <option text="{!option}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                        
+                    
+                        
+                        
+                         <!-- <lightning:select aura:id="myselection" value="{!v.selectValue}">
+                            <aura:iteration items="{!v.options}" var="option">
+                                <option value="{!option}">{!option}</option>
+                            </aura:iteration>
+                        </lightning:select>
+                        
+                        
+                           <lightning:select value="{!v.pageNo}" name="select1" onchange="{! c.onChange }" label="How many tickets?" >
+                            <aura:iteration items="{!v.pageList}" var="option">
+                                <option text="{!option}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                      <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="select-01">Leave Type</label>
+                            <div class="slds-select_container">
+                                <ui:inputSelect  class="dynamic" aura:id="InputLeaveType" change="{!c.onPicklistChange}" required="true"/> 
+                            </div>
+                        </div>   -->
+                    </div>
+                    
+                    <br></br>
+                    <lightning:button variant="brand" label="Save" title="Brand action" onclick="{! c.SaveWizard }" />
+                </form>
+                
+            </p>
+        </lightning:card>
+    </div>
+            
+       <!-- </aura:if> -->
+        
+        
+    </div>
+</aura:component>

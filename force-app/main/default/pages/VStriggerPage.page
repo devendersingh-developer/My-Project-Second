@@ -1,0 +1,17 @@
+<apex:page controller="ClsTrigger" >
+<apex:pagemessages />
+<apex:form >
+    <apex:pageblock >    
+        <apex:pageBlocksection >
+            <apex:pageblockSectionItem >City Name:</apex:pageblockSectionItem>
+            <apex:pageblockSectionItem ><apex:inputtext value="{!CityName}" /></apex:pageblockSectionItem>        
+             <apex:pageblockSectionItem >Total Number of record</apex:pageblockSectionItem>        
+            <apex:pageblockSectionItem >{!count}</apex:pageblockSectionItem>        
+            <!--<apex:pageblockSectionItem ><apex:inputtext value="{!age}" /></apex:pageblockSectionItem>-->        
+        </apex:pageBlocksection>      
+        <apex:pageblockButtons >
+            <apex:commandButton value="Submit" action="{!fncSaveData}" reRender=""/>
+        </apex:pageblockButtons>
+    </apex:pageblock>
+</apex:form>
+</apex:page>

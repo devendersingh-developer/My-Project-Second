@@ -1,0 +1,44 @@
+<aura:component controller="ClsTaxForm"  implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction,force:appHostable" access="global" >
+    <aura:handler  name="init" value="{!this}" action="{!c.doinit}"/>
+    <aura:attribute name="lstTaxFrom" type="Tax_Form__c[]" />  
+    <aura:attribute name="NewTaxFrom" type="Tax_Form__c" default="{}"/> 
+    <div>
+
+        <div>
+            <ui:inputText value="{!v.NewTaxFrom.Name__c}" aura:id="name" label="name"/>
+            <ui:inputText value="{!v.NewTaxFrom.Email__c}" aura:id="Packed" label="Email"/>
+            <ui:inputText value="{!v.NewTaxFrom.Address__c}"  aura:id="Price" label="Address"/>
+            <div class="slds-m-bottom_small slds-page-header slds-align_absolute-center">
+                <button  onclick="{!c.createRecord}"  style="float: right;" class="slds-button slds-button--brand">
+                    Save
+                </button>
+            </div>
+        </div>
+        <br></br>
+        
+        <div>
+            <table class="slds-table slds-table--bordered slds-table--cell-buffer slds-max-medium-table--stacked-horizontal">
+                <thead>
+                    <tr class="slds-text-title--caps">
+                        <th scope="col">
+                            <span class="slds-truncate" title="Quantity">Name</span>      
+                        </th>
+                        <th scope="col">
+                            <span class="slds-truncate" title="SalesPrice">Email</span>
+                        </th >
+                        <th scope="col">       
+                            <span class="slds-truncate" title="UnitPrice">Address</span>
+                        </th>
+                    </tr>    
+                    <aura:iteration items="{!v.lstTaxFrom}" var="PerTax" >
+                        <tr class="slds-hint-parent"> 
+                            <td><div class="slds-truncate" title="{!PerTax.Name}">{!PerTax.Name__c}</div></td>
+                            <td><div class="slds-truncate" title="{!PerTax.Email}">{!PerTax.Email__c}</div></td>
+                            <td><div class="slds-truncate" title="{!PerTax.Description}">{!PerTax.Address__c}</div></td>                         
+                        </tr>
+                    </aura:iteration>
+                </thead>
+            </table>          
+        </div>
+    </div>  
+</aura:component>

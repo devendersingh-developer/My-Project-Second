@@ -1,0 +1,14 @@
+<apex:page controller="clsApexSharing">
+    <apex:pageBlock >
+        <apex:pageBlockSection >
+            <apex:form >
+                <apex:selectList value="{!selectedvalue}" multiselect="false" size="1">
+                    <apex:selectOptions value="{!Users}" rendered="true">
+                    </apex:selectOptions>
+                </apex:selectList>
+                <apex:commandButton action="{!submit}" value="Submit"/>
+            </apex:form>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    
+</apex:page>

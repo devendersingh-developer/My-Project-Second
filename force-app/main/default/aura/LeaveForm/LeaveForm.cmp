@@ -1,0 +1,34 @@
+<aura:component controller="ClsLeave" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction,force:appHostable" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:Attribute name="LeaveForm" type="Leave_Form__c[]"/>
+    
+    <div class="slds-m-bottom_small slds-page-header">
+        <div class="slds-media">
+            <div class="slds-media__figure">
+                <lightning:icon iconName="standard:avatar" size="medium" variant="slds-icon-inverse"></lightning:icon>
+            </div>
+            <div class="slds-media__body">
+                <div class="slds-page-header__title slds-text-heading_small">Leave Form</div>
+            </div>
+            <div class="slds-media__figure slds-media__figure_reverse"></div>
+        </div>
+    </div>
+    <ui:inputDate aura:id="InputFromDate" label="From Date" class="field"  displayDatePicker="true" required="true" />  
+    <ui:inputDate  aura:id="InputToDate" label="To Date" class="field"  displayDatePicker="true"  required="true"/>  
+    <lightning:input aura:id="InputReason"  label="Reason for Leave" type="text" variant="standard" required="true"></lightning:input>
+    
+    <div >
+        <!-- label class="slds-form-element__label" for="select-01">Leave Type</label -->
+        <div class="slds-select_container">
+            <ui:inputSelect  class="dynamic" aura:id="InputLeaveType" change="{!c.onPicklistChange}" required="true"/> 
+        </div>
+    </div>
+    <br></br>
+    <div class="slds-m-bottom_small slds-page-header slds-align_absolute-center">
+        <button  onclick="{!c.SaveLeave}"  style="float: right;" class="slds-button slds-button--brand">
+                Save
+            </button>
+         </div>
+    
+    
+</aura:component>

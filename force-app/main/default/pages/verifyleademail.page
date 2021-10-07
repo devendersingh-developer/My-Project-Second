@@ -1,0 +1,37 @@
+<apex:page sidebar="false" showHeader="false" controller="clsLead">
+    <apex:form id="form">
+        <apex:image style="padding:20px;" url="https://grab--gfidim--c.cs57.content.force.com/servlet/servlet.ImageServer?id=0150k000000brpg&oid=00D0k000000Den5&lastMod=1548742904000"/>     
+        <br/>                                   
+    <div style="z-index: 9;background-image: url(https://grab--gfidim--c.cs57.content.force.com/servlet/servlet.ImageServer?id=0150k000000byvl&oid=00D0k000000Den5&lastMod=1548818886000);height: 459.9px;">
+            <apex:actionFunction name="fncAlert" action="{!fncLeadID}"/>
+            <br/>
+            <br/>
+            <div style="padding:50px 0px 0px 200px;">
+                <h1 style="font-weight: 600;font-size: 4.1em;line-height: 1;text-shadow: 0 1px 2px rg;color: #fff">JBBM Food</h1>
+                <p style="font-size: 2.2em;font-weight: 500;line-height: 1.3;color: #fff">Crave it? Grab it.</p>
+            </div>
+            <apex:commandButton style="border-radius:8px; margin-left: 200px;margin-top: 50px;padding: 15px 30px;line-height: 1;font-size: 1.55em;font-weight: 600;background: #00B140;border-color: #00B140;color: #f2f2f2"  rendered="{!IsShowButton}" onclick="fncAlert(); return false;" value="VERIFY YOUR EMAIL" />
+            <apex:outputPanel style="padding:-1px 0px 0px 200px;" id="showDiv" rendered="{!IsShow}"> 
+                <div style="margin-left: 300px;">
+                    <p  style='font-size: 2.2em;font-weight: 500;line-height: 1.3;color: #fff'>
+                        Dear {!Fname}  {!Lname},
+                    </p>
+                    <p   style='font-size: 2.2em;font-weight: 500;line-height: 1.3;color: #fff'>
+                        Your email address has been verified  
+                    </p>
+                    <p  style='font-size: 2.2em;font-weight: 500;line-height: 1.3;color: #fff'>
+                        Thanks <br/>
+                        Admin
+                    </p>
+                </div>
+            </apex:outputPanel>
+            <apex:outputPanel style="padding:10px 0px 0px 200px;"  rendered="{!IsShowWroning}">
+                <div style="margin-left: 300px;">
+                    <p  style='font-size: 2.2em;font-weight: 500;line-height: 1.3;color: #fff'>
+                        The link you tried to verify your email has been expired.
+                    </p>
+                </div>                  
+            </apex:outputPanel>
+        </div>
+    </apex:form>    
+</apex:page>

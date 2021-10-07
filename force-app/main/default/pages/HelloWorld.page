@@ -1,0 +1,12 @@
+<apex:page showHeader="false"  sidebar="true">
+    <h1>
+        Hi this is my first visual force page
+    </h1>
+    
+    <apex:pageBlock title="A Block Title">
+        <apex:pageBlockSection title="A Section Title">
+            I'm three components deep!
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+
+</apex:page>

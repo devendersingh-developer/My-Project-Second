@@ -1,0 +1,29 @@
+<apex:page controller="clsCustomObject">
+    <table border="0" >
+        <tr>
+            <th>ID</th><th>User Area</th>
+            <th>User Country</th><th>User City</th>
+        </tr>
+        <apex:repeat var="cases" value="{!Emp}">
+        <tr>
+            <td>{!cases.Id }</td>
+            <td>{!cases.Area__c}</td>
+            <td>{!cases.Country__c}</td>
+            <td>{!cases.City__c}</td>
+        </tr>
+        </apex:repeat>
+  </table>
+</apex:page>
+
+<!--<apex:page controller="clsCustomObject">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockTable value="{!Emp}" var="a">
+                <apex:column value="{!a.Id}"/>
+                <apex:column value="{!a.Area__c}"/>
+                <apex:column value="{!a.Country__c}"/>
+                <apex:column value="{!a.City__c}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>-->

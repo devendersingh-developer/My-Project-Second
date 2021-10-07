@@ -1,0 +1,78 @@
+<apex:page controller="clsEmployee" sidebar="false">
+    <script type="text/javascript">
+    function selectAllCheckboxes(obj,receivedInputID){
+        var inputCheckBox = document.getElementsByTagName("input");                  
+        for(var i=0; i<inputCheckBox.length; i++){          
+            if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){                                     
+                inputCheckBox[i].checked = obj.checked;
+            }
+        }
+    }
+    </script>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageblockSection > <!--  warning,Error,confirm,info -->
+                <apex:pageMessage summary="Hi i m in VF Page" severity="info" strength="3"></apex:pageMessage> 
+                <apex:pageBlockTable value="{!wrapEmpList}" var="empWrap"  >
+                    <apex:column >
+                        <apex:facet name="header">
+                            <apex:inputCheckbox onclick="selectAllCheckboxes(this,'inputId')"/>
+                        </apex:facet>
+                        <apex:inputCheckbox value="{!empWrap.selected}" id="inputId"/>
+                    </apex:column> 
+                    <apex:column value="{!empWrap.wrpEmp.Name}" />
+                    <apex:column headerValue="Age">
+                        <apex:outputField value="{!empWrap.wrpEmp.Age__c}"/>
+                    </apex:column>
+                    <apex:column headervalue="Age11">
+                        <apex:OutputText value="{!empWrap.wrpEmp.Age__c}" /> 
+                    </apex:column>  
+                    <apex:column value="{!empWrap.wrpEmp.Age__c}" />
+                    <apex:column value="{!empWrap.wrpEmp.City__c}" />
+                    <apex:column value="{!empWrap.wrpEmp.Country__c}" />
+                    <apex:column value="{!empWrap.wrpEmp.Department_info__c}" />
+                    <apex:column value="{!empWrap.wrpEmp.DOB__c}" />
+                    <apex:column value="{!empWrap.wrpEmp.Email__c}" />
+                    <apex:column value="{!empWrap.wrpEmp.Gender__c}" />
+                    <apex:column value="{!empWrap.wrpEmp.Project_Info__c}" />
+                    <apex:column value="{!empWrap.wrpEmp.Salary__c}" />
+                    <apex:column value="{!empWrap.wrpEmp.Phone__c}" />
+                </apex:pageBlockTable>
+            </apex:pageblockSection>
+            <br/>
+            
+        </apex:pageBlock>
+        
+        <apex:pageBlock >
+            
+            <apex:panelBar >
+                <apex:panelBarItem >
+                    <apex:pageBlockSection title="Employee Information">
+                        <apex:pageBlockSectionItem > <apex:outputlabel value="Login id" for="name"></apex:outputlabel> </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem ><apex:inputtext id="name"/></apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem > Password</apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem ><apex:inputSecret /></apex:pageBlockSectionItem>
+                        
+                        <apex:pageBlockSectionItem > Latter cover</apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem ><apex:inputtextArea /></apex:pageBlockSectionItem>
+                        
+                        <apex:pageBlockSectionItem >Gender</apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem ><apex:inputCheckbox label="Male"/> </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+                </apex:panelBarItem>
+            </apex:panelBar>
+            <apex:pageBlockSection title="Contact Information">
+                <apex:outputLink value="https://www.google.com">Click Me!</apex:outputLink>
+                <apex:pageBlockSectionItem > file</apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem ><apex:inputfile value="" filename=""/></apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            
+           
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save"/>
+                <apex:commandButton value="Cancel"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        
+    </apex:form>
+</apex:page>

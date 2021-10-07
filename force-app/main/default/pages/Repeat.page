@@ -1,0 +1,14 @@
+<apex:page controller="UseofRepeatOnAccountController" sidebar="false" tabStyle="Account">
+    <apex:form >
+    <apex:pageBlock title="Accounts with assoicated Contacts">
+        <apex:repeat value="{!accountList }" var="acc">
+            <apex:pageBlockSection title="{!acc.name}">
+                <apex:pageBlockTable value="{!acc.contacts}" var="con">
+                    <apex:column value="{!con.Firstname}"/>
+                    <apex:column value="{!con.Lastname}"/>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:repeat>
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

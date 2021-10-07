@@ -1,0 +1,72 @@
+<aura:component  controller="KarzaInitiateRequestService" implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global" >
+    <!--________________________________ Style ______________________________-->
+    <!--_________________________ For the Main Question Body_________________-->
+    <aura:if isTrue="{!!v.showKYCVerificationAPiType}">
+        <aura:html tag="style">
+            .slds-modal__container{max-width: 85rem !important;width:83% !important;}
+            .modal-body{height : 80vh !important;max-height: 80vh !important;}
+            .slds-modal__content{height : 80vh !important;max-height: 80vh !important;}
+            .slds-modal__footer{display: inline !important;}
+        </aura:html>
+    </aura:if>
+    <!--____________________ For the Questionnaire Type Body_________________-->
+    <aura:if isTrue="{!v.showKYCVerificationAPiType}">
+        <aura:html tag="style">
+            .slds-modal__container{max-width: 85rem !important;width:20% !important;}
+            .modal-body{height : 60vh !important;max-height: 60vh !important;}
+            .slds-modal__content{height : 30vh !important;max-height: 60vh !important;}
+            .slds-modal__footer{display: inline !important;}
+        </aura:html>
+    </aura:if>
+    <!--____________________ For the Questionnaire Type Body_________________-->
+    
+    <!-- ________________________  Attributes  ______________________________-->
+    <aura:attribute name="showKYCVerificationAPiType"     type="Boolean" default="false" />
+    <aura:attribute name="mapKYCverificationApi"          type="Map"/>
+    <aura:attribute name="listKYCverificationApi" 		  type="List"/>
+    <aura:attribute name="listKYCverificationLabel" 	  type="List"/>
+    <aura:attribute name="selectedKYCVerificationAPiType" type="String"/>
+    
+    <!--Declare Handler-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>  
+    <!--Component Start-->
+    <aura:if isTrue="{!v.showKYCVerificationAPiType}">
+        <h1 class="slds-text-heading_medium slds-text-align_center">KYC Verification API Type</h1>
+        <br/>
+        <lightning:select name="Questionnaire Type" value="{!v.selectedKYCVerificationAPiType}" label="KYC Verification"
+                          onchange="{!c.onKYCVerificationAPiSelect}">
+            <option value="">--None--</option>
+            <aura:iteration items="{!v.listKYCverificationApi}" var="kycVerApi" indexVar="key">
+                <option text="{!kycVerApi}" value="{!kycVerApi}" />
+            </aura:iteration>
+        </lightning:select>
+    </aura:if>
+    
+    <!-- _______________________  Main KYC Verification API Component ____________________________-->
+    <aura:if isTrue="{!v.listKYCverificationLabel.length > 0}">
+        <!-- ___________________  Component Body  ___________________________-->
+        <lightning:card title="">
+            <h1 class="slds-text-heading_large slds-text-align_center">KYC Verification API</h1>
+            <!--  _________________  Footer Buttons  ________________________-->
+            <aura:set attribute="footer">
+                <lightning:button name="Go Back" label="Go Back" onclick="{!c.goBack}" />
+                <!-- lightning:button name="save" disabled="{!v.disableSaveButton}" label="Save" variant="brand"
+                                  onclick="{!c.saveAction}" / -->
+                <lightning:button name="cancel" label="Cancel" onclick="{!c.doCancel}" />
+            </aura:set>
+            <!--  ___________________  accordion  ________________________________-->
+            <div class="slds-col slds-medium-size_1-of-1 slds-var-p-top_small">
+                <div style="overflow:auto;">
+                    <lightning:accordion activeSectionName="B">
+                        <aura:iteration items="{!v.listKYCverificationLabel}" var="objAPIDetail" indexVar="ind">
+                            <lightning:accordionSection name="{!ind}" label="{!objAPIDetail.apiName}">
+                                <!-- c:KifsLightningComponent listParamsWrap = "{!objAPIDetail.lstRequestWrap}"></c:KifsLightningComponent -->
+                            </lightning:accordionSection>
+                        </aura:iteration>
+                    </lightning:accordion> 
+                </div>
+            </div>
+        </lightning:card>
+    </aura:if>
+    <!-- _______________________  Main KYC Verification API Component END ________________________-->
+</aura:component>

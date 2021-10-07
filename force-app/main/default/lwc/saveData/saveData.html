@@ -1,0 +1,42 @@
+<template>
+    <lightning-card>
+
+        <div class={className}>
+            Dynamic Style
+        </div>
+
+    <div class="slds-grid slds-wrap" if:true={isData}>
+            <div class="slds-p-around_small slds-col slds-size_1-of-2">
+                <lightning-input type="text" name="Name" label="Enter Name" 
+                 value={TaxFormRecord.Name__c} onchange={handleNameChange}></lightning-input>
+            </div>
+            <div class="classTextBox slds-p-around_small slds-col slds-size_1-of-2">
+                <lightning-input class={classTextBox} type="text" name="Email" label="Enter Email" 
+                value={TaxFormRecord.Email__c} onchange={handleEmailChange}></lightning-input>
+            </div>
+           <div class="slds-p-around_small slds-col slds-size_1-of-2">
+                <lightning-input type="text" name="Address" label="Enter Address"
+                value={TaxFormRecord.Address__c} onchange={handleAddressChange}></lightning-input>
+           </div>
+           <div class="slds-p-around_small slds-col slds-size_1-of-2"> 
+            <template if:true={CityPicklistValues.data}>
+                <lightning-combobox name="City"
+                                    label="City"
+                                    value={TaxFormRecord.City__c}
+                                    placeholder="-Select-"
+                                    options={CityPicklistValues.data.values}
+                                    onchange={handleChange} >
+                </lightning-combobox>
+          </template><br/>
+           </div>
+          
+        <div class=" slds-align_absolute-center">
+            <lightning-button variant="brand" type="submit" name="save" label="Save" onclick = {jsSaveStatement} data-labelname = "label"    >
+            </lightning-button>
+            <lightning-button variant="brand" label="Cancel" onclick={closeQuickAction} class="slds-m-left_x-small"></lightning-button>
+      </div>
+    </div>
+
+</lightning-card>
+
+</template>

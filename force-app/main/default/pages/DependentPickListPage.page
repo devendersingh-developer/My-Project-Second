@@ -1,0 +1,43 @@
+<apex:page controller="clsPopulatePicklist" >
+    <script>
+    function fncCheckID()
+    {
+        debugger;
+        var radios = document.getElementsByTagName('input');
+        var value;
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].type === 'radio' && radios[i].checked==true) {
+                value = radios[i].value;       
+            }
+        }
+       
+            document.getElementById('j_id0:j_id5:Sid').style.display='block';
+            document.getElementById('j_id0:j_id5:Sid').value=value;
+      
+       
+        alert('Hi '+value);
+    }
+    </script>
+    
+     <table border="1" >
+        <tr>
+            <th></th>
+            <th>AccountID</th><th>Name</th>
+            <th>Phone</th><th>Type</th>
+        </tr>
+        <apex:repeat var="ca" value="{!accountList}">
+        <tr>
+            <td><input type="radio" group="radio"  id="{!ca.Id}"    value="{!ca.Id}" /></td> <!--This is HTML Tage With Apex Vlue As like VS Page Value -->
+            <td>{!ca.Id}</td>
+            <td>{!ca.Name}</td>
+            <td>{!ca.Phone}</td>
+            <td>{!ca.Type}</td>
+        </tr>
+        </apex:repeat>
+  </table>
+    <br/>
+    <apex:form >
+        <apex:commandButton value="Click Me!" onclick="fncCheckID();" />
+        <apex:outputText style="Display:none" id="Sid"></apex:outputText>
+    </apex:form>
+</apex:page>

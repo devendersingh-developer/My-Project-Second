@@ -1,0 +1,70 @@
+<aura:component  controller="AddDynamicRecords" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <!--declare events hendlers-->  
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
+    
+    <!--declare events Vetriable-->  
+    <aura:attribute name="productList"  type="List"/>
+    <aura:attribute name="cardType" type="String" default="No Type"/>
+    <aura:attribute name="sMID" type="String"/> 
+    <aura:attribute name="sCardType" type="String"/> 
+    <aura:attribute name="sProduct" type="String"/> 
+    
+    
+    <!--declare Main Work-->
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_6-of-12" style="font-weight: 600;">
+            <lightning:input type="text"  class="slds-p-horizontal_xx-large" value="{!v.sMID}" aura:id='field' required="true" messageWhenValueMissing="Enter MID"  />
+        </div>
+        <div class="slds-col slds-size_6-of-12" style="width: 40%;margin-left: 0%;font-weight: 600;">
+            <lightning:input type="text"  class="slds-p-horizontal_xx-large" value="{!v.sCardType}" aura:id='field' required="true" messageWhenValueMissing="Enter Card Type"  />
+        </div>  
+    </div>
+    
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_6-of-12" style="font-weight: 600;">
+            <lightning:input type="text"  class="slds-p-horizontal_xx-large" value="{!v.sProduct}" aura:id='field' required="true" messageWhenValueMissing="Enter Product"  />
+        </div>
+        <div class="slds-col slds-size_6-of-12" style="font-weight: 600;margin-left: 22%;margin-top: 3%;">
+            <lightning:buttonicon   iconName="utility:add" size="medium" alternativeText="Add" onclick="{!c.handleProduct}"/>
+        </div>
+    </div>
+    <br></br>
+    <br></br>
+    <aura:if isTrue="{!not(empty(v.productList))}">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Opportunity Name">MID</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Account Name">Card Type</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Close Date">Product</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration var="product" items="{!v.productList}">   
+                    <tr class="slds-hint-parent">
+                        <td data-label="Account Name">
+                            <div class="slds-truncate" title="Cloudhub">{!product.MID}</div>
+                        </td>
+                        <td data-label="Account Name">
+                            <div class="slds-truncate" title="Cloudhub">{!product.CardType}</div>
+                        </td>
+                        <td data-label="Account Name">
+                            <div class="slds-truncate" title="Cloudhub">{!product.Product}</div>
+                        </td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+        <br></br>
+        <br></br>
+        <div class="align-right">
+            <lightning:buttonicon iconName="utility:add" size="medium" alternativeText="Add" onclick="{!c.Submit}"/>
+        </div>
+    </aura:if>
+</aura:component>

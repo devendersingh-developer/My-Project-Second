@@ -1,0 +1,74 @@
+<aura:component implements="force:hasRecordId,force:lightningQuickAction,lightning:actionOverride" access="global">
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <aura:attribute name="salaryAssessmentData" type="list"/>
+    <force:recordData aura:id="forceRecord" recordId="{!v.recordId}"
+                      fields="Id, Name, Type, Phone,Website "
+                      targetFields="{!v.salaryAssessmentData}"
+                      recordUpdated="{!c.doInit}"
+                      layouttype = "FULL"
+                      />
+    <p class="praghraph1">hi this is p tag. that is use for top level of design direct from lightning component bundle STYLE</p>
+    <div>
+        <p class="praghraph2">HI Two this is p tag. that is use for top level of design direct from lightning component bundle STYLE</p>
+    </div>
+    <div>
+        <div>
+            <div>
+                <p class="praghraph3">HI Two this is p tag. that is use for top level of design direct from lightning component bundle STYLE</p>
+            </div>
+        </div>
+    </div>
+    <table class="slds-table slds-table_bordered slds-table_striped 
+                  slds-table_fixed-layout records-table" style="border: 1px solid rgb(217, 219, 221);"> 
+        <thead> 
+            <tr class="slds-text-title_caps">  
+                <th> 
+                    <div class="slds-truncate">test 1</div> 
+                </th> 
+                <th> 
+                    <div class="slds-truncate">test 2</div> 
+                </th>
+                <th> 
+                    <div class="slds-truncate">test 3</div> 
+                </th>
+                <th> 
+                    <div class="slds-truncate">test 4</div> 
+                </th>
+            </tr> 
+        </thead> 
+        <tbody> 
+            <aura:iteration items="{!v.salaryAssessmentData}" var="row"> 
+                <tr> 
+                    <td class="slds-truncate"> 
+                        <lightning:layout >  
+                            <lightning:layoutItem class="slds-m-right_x-small"> 
+                                {!row.Type}
+                            </lightning:layoutItem> 
+                        </lightning:layout> 
+                    </td> 
+                    <td class="slds-truncate">
+                        <lightning:layout > 
+                            <lightning:layoutItem class="slds-m-right_x-small"> 
+                                {!row.Type}
+                            </lightning:layoutItem> 
+                        </lightning:layout> 
+                    </td>
+                    <td class="slds-truncate">
+                        <lightning:layout > 
+                            <lightning:layoutItem class="slds-m-right_x-small"> 
+                                {!row.Phone}
+                            </lightning:layoutItem> 
+                        </lightning:layout> 
+                    </td>
+                    <td class="slds-truncate">
+                        <lightning:layout > 
+                            <lightning:layoutItem class="slds-m-right_x-small"> 
+                                {!row.Website}
+                            </lightning:layoutItem> 
+                        </lightning:layout> 
+                    </td>
+                </tr> 
+            </aura:iteration> 
+        </tbody> 
+    </table> 
+</aura:component>

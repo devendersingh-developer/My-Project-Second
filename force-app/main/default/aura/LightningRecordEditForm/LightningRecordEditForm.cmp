@@ -1,0 +1,105 @@
+<aura:component controller="clsEmployee" implements="force:lightningQuickAction" >
+    
+    <aura:attribute name="productList"  type="List"/>
+    
+    <!--lightningRecEditFormComp-->
+    <aura:attribute name="disabled" type="Boolean" default="false" />
+    <aura:attribute name="saved" type="Boolean" default="false" />
+    <aura:attribute name="showSpinner" type="Boolean" default="true" />
+    <aura:if isTrue="{!v.showSpinner}">
+        <lightning:spinner />
+    </aura:if>
+    <aura:if isTrue="{!!v.saved}">
+        <lightning:recordEditForm
+            aura:id="createAccountForm"
+            onload="{!c.handleLoad}"
+            onsubmit="{!c.handleSubmit}"
+            onsuccess="{!c.handleSuccess}"
+            
+            objectApiName="Account">
+            
+            <lightning:messages />
+
+            <lightning:inputField fieldName="Name" />
+            <lightning:inputField fieldName="AccountNumber" />
+            <lightning:inputField fieldName="Type" />
+            <lightning:inputField fieldName="Industry " />
+            <lightning:inputField fieldName="BillingStreet" />
+            <lightning:inputField fieldName="BillingCity" />
+            <lightning:inputField fieldName="BillingState" />
+            <div class="slds-m-top_medium">
+                <lightning:button disabled="{!v.disabled}" variant="brand" type="submit" name="save" label="Save" />
+            </div>
+        </lightning:recordEditForm>
+        
+        <div class="slds-m-top_medium">
+                <lightning:button variant="brand" type="submit" name="save" onclick="{!c.handleSave}" label="getError" />
+            </div>
+        <aura:set attribute="else">
+            <p>Saved!</p>
+        </aura:set>
+    </aura:if>
+    
+     <aura:if isTrue="{!not(empty(v.productList))}">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Opportunity Name">Name</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Account Name">AccountNumber</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Close Date">Type</div>
+                    </th>
+                     <th class="" scope="col">
+                        <div class="slds-truncate" title="Close Date">BillingStreet</div>
+                    </th>
+                     <th class="" scope="col">
+                        <div class="slds-truncate" title="Close Date">BillingCity</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Close Date">BillingState</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Close Date">Website</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration var="product" items="{!v.productList}">   
+                    <tr class="slds-hint-parent">
+                        <td data-label="Account Name">
+                            <div class="slds-truncate" title="Cloudhub">{!product.Name}</div>
+                        </td>
+                        <td data-label="Account Name">
+                            <div class="slds-truncate" title="Cloudhub">{!product.AccountNumber}</div>
+                        </td>
+                        <td data-label="Account Name">
+                            <div class="slds-truncate" title="Cloudhub">{!product.Type}</div>
+                        </td>
+                         <td data-label="Account Name">
+                            <div class="slds-truncate" title="Cloudhub">{!product.BillingStreet}</div>
+                        </td>
+                         <td data-label="Account Name">
+                            <div class="slds-truncate" title="Cloudhub">{!product.BillingCity}</div>
+                        </td>
+                         <td data-label="Account Name">
+                            <div class="slds-truncate" title="Cloudhub">{!product.BillingState}</div>
+                        </td>
+                         <td data-label="Account Name">
+                            <div class="slds-truncate" title="Cloudhub">{!product.Website}</div>
+                        </td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+        <br></br>
+        <br></br>
+        <div class="align-right">
+            <lightning:buttonicon iconName="utility:add" size="medium" alternativeText="Add" onclick="{!c.Submit}"/>
+        </div>
+    </aura:if>
+
+</aura:component>

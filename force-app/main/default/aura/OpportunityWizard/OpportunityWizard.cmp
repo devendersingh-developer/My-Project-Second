@@ -1,0 +1,28 @@
+<aura:component  implements="force:hasRecordId,force:lightningQuickAction">
+    <aura:attribute name="Opportunity" type="sObject[]" />
+    <div>
+        <lightning:card title="Customer Infromation">
+            
+            <p class="slds-p-horizontal_small">
+                <form>
+                    <div>
+                        <h4>Opportunity Information</h4>
+                        <lightning:inputField AccountName="{!v.Account.name}" />
+                        <lightning:input label="Opportunity Name" value="{!v.Account.name}" />
+                        <ui:inputDate  aura:id="InputToDate" label="Close date" class="field"  displayDatePicker="true"  required="true"/>  
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="select-01">Leave Type</label>
+                            <div class="slds-select_container">
+                                <ui:inputSelect  class="dynamic" aura:id="InputLeaveType" change="{!c.onPicklistChange}" required="true"/> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <br></br>
+                    <lightning:button variant="brand" label="Next" title="Brand action" onclick="{! c.handleClick }" />
+                </form>
+                
+            </p>
+        </lightning:card>
+    </div>
+</aura:component>

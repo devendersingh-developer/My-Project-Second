@@ -1,0 +1,18 @@
+<template>
+    <div>
+        <div>Name: {name}</div>
+        <div>Description: {description}</div>
+        <lightning-badge label={material}></lightning-badge>
+        <lightning-badge label={category}></lightning-badge>
+        <div>Price: {price}</div>
+        <div><img src={pictureUrl}/></div>
+    </div>
+<div class="slds-m-around_medium">
+    <template for:each={contacts} for:item="item" for:index="index">
+    <li key={item.Id}>
+        <lightning-formatted-text value={item.Name}></lightning-formatted-text>
+        <lightning-formatted-text value={item.Title}></lightning-formatted-text>
+    </li>
+    </template>
+    </div>
+</template>

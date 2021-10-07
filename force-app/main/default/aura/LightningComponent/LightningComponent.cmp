@@ -1,0 +1,285 @@
+<aura:component access="GLOBAL" controller="ClsWizard">
+    <aura:attribute name="accountData" type="Account" default="{ 'sobjectType': 'Account','Name': ''}"/>
+    <aura:attribute name="contactData" type="Contact" default="{ 'sobjectType': 'Contact','LastName': ''}"/>
+    <aura:attribute name="opportunityData" type="Opportunity" default="{ 'sobjectType': 'Opportunity','StageName' : 'prospecting'}"/>
+    <aura:attribute name="showAccount" type="boolean" default="true"/> '
+    <aura:attribute name="showContact" type="boolean" default="false"/> 
+    <aura:attribute name="showOpportunity" type="boolean" default="false"/>
+    <aura:attribute name="setMessage" type="String"/> 
+    <aura:attribute name="showError" type="boolean" default="false"/>
+    <aura:attribute name="showData" type="boolean" default="false"/>
+    <aura:attribute name="message" type="String" default="NoError"/> 
+    
+    
+    <div class="slds-grid slds-grid--vertical forceListViewManager adapetr-config-main">
+        <!--********* HEADER ********* -->
+        <div class="slds-page-header adapetr-header">
+            <div class="slds-media">
+                <div class="slds-media__body">
+                    <aura:renderIf isTrue="{!v.showAccount}">
+                        <p class="slds-text-title--caps slds-line-height--reset">Account Creation</p>
+                    </aura:renderIf>
+                    
+                    <aura:renderIf isTrue="{!v.showContact}">
+                        <p class="slds-text-title--caps slds-line-height--reset">Contact Creation</p>
+                    </aura:renderIf>
+                    <aura:renderIf isTrue="{!v.showOpportunity}">    
+                        <p class="slds-text-title--caps slds-line-height--reset">Opportunity Creation</p>
+                    </aura:renderIf>
+                    <aura:renderIf isTrue="{!v.showData}">
+                        <p class="slds-text-title--caps slds-line-height--reset">Record Insertion</p>
+                    </aura:renderIf>
+                    <div id="showErrorrTractConfig" class="cmn_error_msg " style="display:none; text-align:center;font-weight:700">
+                        <ui:outputText value="{!v.message}"/>
+                    </div>
+                    <div id="showMessageTractConfig" class="cmn_message " style="display:none;text-align:center;font-weight:700">
+                        <ui:outputText value="{!v.message}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="adapetr-config-sec">
+            <h3 class="slds-text-heading--small">Please provide the following information. All the fields marked with <span class="cmn_mandatory_indicator">*</span> are required.</h3>
+            <div class="slds-box slds-align--absolute-center config-table-details">
+                <table class="slds-table ">
+                    <aura:renderIf isTrue="{!v.showError}">
+                        
+                        <ui:message title="Warning" severity="warning" closable="true">
+                            Please Fill required field first </ui:message>
+                    </aura:renderIf>
+                    
+                    <aura:renderIf isTrue="{!v.showAccount}">
+                        <tr>
+                            <td>
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label">Name<span class="cmn_mandatory_indicator">*</span></label>
+                                </div>
+                                <div class="width">  
+                                    <ui:inputText class="slds-input" aura:id="Name" value="{!v.accountData.Name}"></ui:inputText>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td >
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label ">Account Number</label>
+                                </div>                                        
+                                <div class="width">
+                                    <ui:inputText class="slds-input "  value="{!v.accountData.AccountNumber}"></ui:inputText>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <div class="topSpacing"> 
+                                    <label class="slds-form-element__label">Description</label>
+                                </div>
+                                
+                                <div class="width">
+                                    <ui:inputText class="slds-input" value="{!v.accountData.Description}"></ui:inputText>
+                                </div>
+                            </td>    
+                        </tr>
+                    </aura:renderIf>
+                    <aura:renderIf isTrue="{!v.showContact}">
+                        <tr>
+                            <td>
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label">First Name</label>
+                                </div>
+                                <div class="width">  
+                                    <ui:inputText class="slds-input" value="{!v.contactData.Name}"></ui:inputText>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td >
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label ">Last Name<span class="cmn_mandatory_indicator">*</span></label>
+                                </div>                                        
+                                <div class="width">
+                                    <ui:inputText class="slds-input " aura:id="LastName" value="{!v.contactData.LastName}"></ui:inputText>
+                                </div>
+                            </td>
+                        </tr>
+                  
+                    </aura:renderIf>  
+                    <aura:renderIf isTrue="{!v.showOpportunity}">
+                        <tr>
+                            <td>
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label">Name<span class="cmn_mandatory_indicator">*</span></label>
+                                </div>
+                                <div class="width">  
+                                    <ui:inputText class="slds-input" aura:id="OpportunityName" value="{!v.opportunityData.Name}"></ui:inputText>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td >
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label ">Stage<span class="cmn_mandatory_indicator">*</span></label>
+                                </div>                                        
+                                <div class="width">
+                                    <ui:inputSelect class="slds-input" aura:id="StageName" change="{!c.onSelectChange}">
+                                        <ui:inputSelectOption text="Prospecting" label="Prospecting" value="true"/>
+                                        <ui:inputSelectOption text="Qualification" label="Qualification"/>
+                                        <ui:inputSelectOption text="Needs Analysis" label="Needs Analysis"/>
+                                        <ui:inputSelectOption text="Value Proposition" label="Value Proposition"/>
+                                        <ui:inputSelectOption text="Id. Decision Makers" label="Id. Decision Makers"/>
+                                        <ui:inputSelectOption text="Perception Analysis" label="Perception Analysis"/>
+                                        <ui:inputSelectOption text="Closed Won" label="Closed Won"/>
+                                        <ui:inputSelectOption text="Closed Lost" label="Closed Lost"/>   
+                                    </ui:inputSelect>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <div class="topSpacing"> 
+                                    <label class="slds-form-element__label">Close Date<span class="cmn_mandatory_indicator">*</span></label>
+                                </div>
+                                
+                                <div class="width">
+                                    <ui:inputDate class="slds-input" aura:id="closeDate" value="{!v.opportunityData.CloseDate}" displayDatePicker="true"></ui:inputDate>
+                                </div>
+                            </td>    
+                        </tr>
+                    </aura:renderIf>
+                    <aura:renderIf isTrue="{!v.showData}">
+                        <p class="slds-text-title--caps slds-line-height--reset">Account Information</p>
+                        <tr>
+                            <td>
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label">Name<span class="cmn_mandatory_indicator">*</span></label>
+                                </div>
+                                <div class="width">  
+                                    <ui:outputText class="slds-output" value="{!v.accountData.Name}"></ui:outputText>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td >
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label ">Account Number</label>
+                                </div>                                        
+                                <div class="width">
+                                    <ui:outputText class="slds-output" value="{!v.accountData.AccountNumber}"></ui:outputText>  
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <div class="topSpacing"> 
+                                    <label class="slds-form-element__label">Description</label>
+                                </div>
+                                
+                                <div class="width">
+                                    <ui:outputText class="slds-output" value="{!v.accountData.Description}"></ui:outputText>  
+                                </div>
+                            </td>    
+                        </tr>
+                         <p class="slds-text-title--caps slds-line-height--reset">Contact Information</p>
+                        <tr>
+                            <td>
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label">First Name<span class="cmn_mandatory_indicator">*</span></label>
+                                </div>
+                                <div class="width">  
+                                    <ui:outputText class="slds-output" value="{!v.contactData.firstName}"></ui:outputText>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td >
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label ">Last Name</label>
+                                </div>                                        
+                                <div class="width">
+                                    <ui:outputText class="slds-output" value="{!v.contactData.LastName}"></ui:outputText>  
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <div class="topSpacing"> 
+                                    <label class="slds-form-element__label">phone</label>
+                                </div>
+                                
+                                <div class="width">
+                                    <ui:outputText class="slds-output" value="{!v.contactData.phone}"></ui:outputText>  
+                                </div>
+                            </td>    
+                        </tr>
+                        <p class="slds-text-title--caps slds-line-height--reset">Opportunity Information</p>
+                        <tr>
+                            <td>
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label">Name<span class="cmn_mandatory_indicator">*</span></label>
+                                </div>
+                                <div class="width">  
+                                    <ui:outputText class="slds-output" value="{!v.opportunityData.Name}"></ui:outputText>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td >
+                                <div class="topSpacing">
+                                    <label class="slds-form-element__label ">Stage</label>
+                                </div>                                        
+                                <div class="width">
+                                    <ui:outputText class="slds-output" value="{!v.opportunityData.StageName}"></ui:outputText>  
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <div class="topSpacing"> 
+                                    <label class="slds-form-element__label">Close Date</label>
+                                </div>
+                                
+                                <div class="width">
+                                    <ui:outputText class="slds-output" value="{!v.opportunityData.CloseDate}"></ui:outputText>  
+                                </div>
+                            </td>    
+                        </tr>
+                    </aura:renderIf>
+                </table>
+            </div>   
+            
+            <div class="slds-grid  slds-grid--align-center">
+                <aura:renderIf isTrue="{!v.showAccount}">
+                    <button class="slds-button slds-button--brand" onclick="{!c.nextTab}">Next</button>
+                </aura:renderIf>
+                
+                <aura:renderIf isTrue="{!v.showContact}">
+                    <button class="slds-button slds-button--brand" onclick="{!c.prevTab}" >Back</button>
+                    <button class="slds-button slds-button--brand" onclick="{!c.nextTab}" >Next</button>
+                </aura:renderIf>
+                
+                <aura:renderIf isTrue="{!v.showOpportunity}">        
+                    <button class="slds-button slds-button--brand" onclick="{!c.prevTab}" >Back</button> 
+                    <button class="slds-button slds-button--brand" onclick="{!c.nextTab}" >Next</button>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.showData}">        
+                    <button class="slds-button slds-button--brand" onclick="{!c.prevTab}" >Back</button> 
+                    <button class="slds-button slds-button--brand" onclick="{!c.saveRecord}" >Save</button>
+                </aura:renderIf>
+                
+            </div>
+        </div>
+    </div>
+</aura:component>

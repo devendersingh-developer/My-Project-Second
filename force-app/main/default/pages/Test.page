@@ -1,0 +1,3 @@
+<apex:page controller="attachPDFToCustom" action="{!attachPDF}" standardStylesheets="false" showHeader="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" >
+    <apex:include pageName="Letter_V2"/>   
+</apex:page>

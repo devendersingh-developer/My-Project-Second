@@ -1,0 +1,131 @@
+<aura:component controller="OpportunityLineItemController" implements="force:hasRecordId,force:lightningQuickAction">
+    <aura:attribute name="ProductLine" type="List" />
+    <aura:attribute name="EditOpportunityLine" type="sObject[]" />
+    <aura:attribute name="currentStage" type="string"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="rowIndex" type="String"/>
+    <aura:attribute name="items" type="List" />
+    <aura:attribute name="SearchKeyWord" type="String" />
+    <aura:HTML tag="style">
+    	.slds-modal__container{
+        width:90% !important;
+        max-width: 90%; 
+        }
+    </aura:HTML>
+    <div aura:id="SearchProduct">
+        <div aura:id="searchRes" class="slds-form-element slds-lookup slds-is-close">
+            <label class="slds-form-element__label">{!v.label}</label>
+            <!--This part is for display search bar for lookup-->  
+            <div class="slds-form-element__control">
+                <div class="slds-input-has-icon slds-input-has-icon--right">
+                    <!-- This markup is for when an record is selected -->
+                    <div aura:id="lookup-pill" class="slds-pill-container">
+                        <div aura:id="lookupField" class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right"  style="width: 100%;">
+                            
+                            <lightning:input type="search" 
+                                             value="{!v.SearchKeyWord}"
+                                             placeholder="search.."/>
+                            <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                                <lightning:icon iconName="utility:search" size="x-small" alternativeText="icon"/>
+                            </span>
+                            <lightning:button variant="brand" label="Search" title="Brand action" onclick="{! c.handleClick }" />
+                        </div> 
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <lightning:pillContainer class="x-small slds-m-around_xx-small" items="{!v.items}" onitemremove="{!c.handleItemRemove}"></lightning:pillContainer>
+        <!--<br></br><p>
+     <lightning:pillContainer items="{!v.items}" onitemremove="{!c.handleItemRemove}"></lightning:pillContainer>
+    </p><br></br> -->
+        <!-- Use a data table from the Lightning Design System: https://www.lightningdesignsystem.com/components/data-tables/ -->
+        <table class="slds-table slds-table_bordered slds-table_striped slds-table_cell-buffer slds-table_fixed-layout">
+            <thead>
+                <tr class="slds-text-heading_label">
+                    <th scope="col"></th>
+                    <th scope="col"><div class="slds-truncate" title="Name">Name</div></th>
+                    <th scope="col"><div class="slds-truncate" title="ProductCode">ProductCode</div></th>
+                    <th scope="col"><div class="slds-truncate" title="Quantity">Description</div></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Use the Apex model and controller to fetch server side data -->
+                <aura:iteration items="{!v.ProductLine}" var="PrdLine">
+                    <tr>
+                        <aura:if isTrue="{!v.rowIndex == 0}">
+                            <td>
+                                <form class="account-form" onsubmit="{!c.BtnAddToPill}">
+                                    <input type="hidden" value="{!PrdLine.Name}" class="ProductLine-name" />
+                                    <input type="hidden" value="{!PrdLine.ProductCode}" class="ProductLine-Code" />
+                                    <input type="hidden" value="{!PrdLine.Id}" class="ProductLine-ID" />
+                                    <lightning:button iconName="action:approval" 
+                                                      iconPosition="left" 
+                                                      variant="base" 
+                                                      type="submit"/>  
+                                </form>
+                            </td>
+                            <aura:set attribute="else">
+                                <td>
+                                    <form class="account-form" onsubmit="{!c.BtnAddToPill}">
+                                        <input type="hidden" value="{!PrdLine.Name}" class="ProductLine-name" />
+                                        <input type="hidden" value="{!PrdLine.ProductCode}" class="ProductLine-Code" />
+                                        <input type="hidden" value="{!PrdLine.Id}" class="ProductLine-ID" />
+                                        <lightning:button iconName="action:approval" 
+                                                          iconPosition="left" 
+                                                          variant="success" 
+                                                          type="submit"/>  
+                                    </form>
+                                </td>
+                            </aura:set>
+                        </aura:if>
+                        <td><div class="slds-truncate" title="{!PrdLine.Name}">{!PrdLine.Name}</div></td>
+                        <td><div class="slds-truncate" title="{!PrdLine.ProductCode}">{!PrdLine.ProductCode}</div></td>
+                        <td><div class="slds-truncate" title="{!PrdLine.Description}">{!PrdLine.Description}</div></td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+        <lightning:button variant="brand" label="Next" title="Brand action" onclick="{! c.ClickNext }" />
+    </div>
+    <br/>
+    
+    <div aura:id="NextProduct" >
+        <table class="slds-table slds-table_bordered slds-table_striped slds-table_cell-buffer slds-table_fixed-layout">
+            <thead>
+                <tr class="slds-text-heading_label">
+                    <th scope="col"><div class="slds-truncate" title="Name">Name</div></th>
+                    <th scope="col"><div class="slds-truncate" title="ProductCode">ProductCode</div></th>
+                    <th scope="col"><div class="slds-truncate" title="Quantity">Quantity</div></th>
+                    <th scope="col"><div class="slds-truncate" title="Delete">Unit Price</div></th>
+                    <th scope="col"><div class="slds-truncate" title="Total Price">Total Price</div></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Use the Apex model and controller to fetch server side data -->
+                <aura:iteration items="{!v.EditOpportunityLine}" var="EditOppLine">
+                    <tr>
+                        <td><div class="slds-truncate" title="{!EditOppLine.Name}">{!EditOppLine.Product_Name__c}</div></td>
+                        <td><div class="slds-truncate" title="{!EditOppLine.ProductCode}">{!EditOppLine.Product_Code__c}</div></td>
+                        <td><lightning:input  aura:id="inputFieldRes1" onchange="{!c.OnQuantityChange}"  value="{!EditOppLine.Quantity}" /></td>
+                        <td><ui:inputNumber aura:id="inputFieldRes1" disabled="true"   value="{!EditOppLine.UnitPrice}"/></td>
+                        <td><ui:inputNumber aura:id="inputFieldRes1"   value="{!EditOppLine.TotalPrice}"/></td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+        <div>
+            <lightning:button variant="brand" label="Previous" title="Brand action" onclick="{! c.ClickNext }" />
+            <lightning:button variant="brand" label="Save" title="Brand action" onclick="{! c.SaveRecords }" />
+        </div>
+    </div>		
+    
+    <div>
+        <lightning:progressIndicator currentStep="{!v.currentStage}" type="base" hasError="false" variant="base">
+            <lightning:progressStep label="Step One" value="step1"/>
+            <lightning:progressStep label="Step Two" value="step2"/>
+            <lightning:progressStep label="Step Two" value="step3"/>
+        </lightning:progressIndicator>
+    </div>
+</aura:component>

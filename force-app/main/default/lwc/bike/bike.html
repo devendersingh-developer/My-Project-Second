@@ -1,0 +1,16 @@
+<template>
+<lightning-card>
+<div>
+    <img src={bike.picture} alt="bike picture" />
+    <p>{bike.name}</p>
+</div>
+<div class="slds-m-around_medium">
+<template for:each={contacts} for:item="item" for:index="index">
+<li key={item.Id}>
+    <lightning-formatted-text value={item.Name}></lightning-formatted-text>
+    <lightning-formatted-text value={item.Title}></lightning-formatted-text>
+</li>
+</template>
+</div>
+</lightning-card>
+</template>

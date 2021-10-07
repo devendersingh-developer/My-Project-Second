@@ -1,0 +1,130 @@
+<aura:component controller="ClsContact" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride,force:lightningQuickAction,force:appHostable" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
+    <aura:Attribute name="LstContact" type="List"/>
+    
+    <aura:attribute name="page" type="integer" description="using for store page Number"/>
+    <aura:attribute name="pages" type="integer" description="using for store All Pages page Number"/>
+    <aura:attribute name="total" type="integer" description="total records count store "/>
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
+    
+    <div class="slds-m-bottom_small slds-page-header">
+        <div class="slds-media">
+            <div class="slds-media__figure">
+                <lightning:icon iconName="standard:avatar" size="medium" variant="slds-icon-inverse"></lightning:icon>
+            </div>
+            <div class="slds-media__body">
+                <div class="slds-page-header__title slds-text-heading_small">Contact Form</div>
+            </div>
+            <div class="slds-media__figure slds-media__figure_reverse"></div>
+        </div>
+    </div>
+    
+    <div>
+        <div style="display: -webkit-box;" class="slds-page-header slds-align_absolute-center">
+            <div style="margin-left: 70px;width: 550px;">  
+                Search:  <lightning:input aura:id="InputSearchDate" onchange="{!c.SearchText}" />
+            </div>
+        </div>
+        
+        <div>
+            <table class="slds-table slds-table_bordered slds-table_striped slds-table_cell-buffer slds-table_fixed-layout">
+                <thead>
+                    <tr class="slds-text-heading_label">
+                       
+                        <th scope="col"><div class="slds-truncate" title="Name">First Name</div></th>
+                        <th scope="col"><div class="slds-truncate" title="Email">Email</div></th>
+                        <th scope="col"><div class="slds-truncate" title="Quantity">Description</div></th>
+                         <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.LstContact}" var="lstContact">
+                        <tr>
+                           
+                            <td><div class="slds-truncate" title="{!lstContact.Name}">{!lstContact.FirstName}</div></td>
+                            <td><div class="slds-truncate" title="{!lstContact.Email}">{!lstContact.Email}</div></td>
+                            <td><div class="slds-truncate" title="{!lstContact.Description}">{!lstContact.Description}</div></td>
+                          <td>
+                                      
+                              <button  style="float: right;" class="slds-button slds-button--brand" onclick="{!c.EditContact}">
+                                                Edit
+                                            </button>
+                                    </td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="slds-page-header" role="banner">
+        <div class="slds-align_absolute-center">            
+            <lightning:button disabled="{!v.page == 1}" variant="brand" label="Previous Page" onclick="{! c.navigate }" />            
+            <lightning:button disabled="{!v.page == v.pages}" aura:id="previousPage" variant="brand" label="Next Page" onclick="{! c.navigate }" />
+        </div>
+        <p class="slds-page-header__title slds-truncate">Page Size {!v.total} Contact • page {!v.page} / {!v.pages}</p>
+               
+        <!-- <div class="slds-m-bottom_small">
+                <button  onclick="{!c.SearchText}"  style="float: right;" class="slds-button slds-button-brand">
+                    Search
+                </button>
+            </div>  
+   			<lightning:select  aura:id="recordSize" value="{!v.pageNo}" name="select1" onchange="{! c.onSelectChange }" label="How many tickets?" >
+            <aura:iteration items="{!v.pageList}" var="option">
+                <option text="{!option}"></option>
+            </aura:iteration>
+        </lightning:select> -->
+        
+        <ui:inputSelect aura:id="recordSize" label="Display Record Per Page: " change="{!c.onSelectChange}">
+            <ui:inputSelectOption text="5" label="5" value="true"/>
+            <ui:inputSelectOption text="10" label="10"/>
+            <ui:inputSelectOption text="15" label="15"/>
+        </ui:inputSelect> 
+    </div>
+    
+    
+    <aura:if isTrue="{!v.isOpen}">
+            
+            <!--###### MODAL BOX Start######--> 
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- ###### MODAL BOX HEADER Start ######-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModel }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">About Sfdcmonkey.com</h2>
+                    </header>
+                    <!--###### MODAL BOX BODY Part Start######-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <p>
+                            <b>The goal of this blog is to provide tips and tricks/workarounds for salesforce developer and admins.
+                            Many of us face the same issues and have the same questions when using and implementing Salesforce.
+                            As a community of users and developers, it is important for us to share our experiences.
+                            I try to reach out to other users and help the Salesforce community in general.
+                            Much of this blog will focus on Lightning(code &amp; config.) but I will also
+                            cover some of the more basic topics in salesforce.
+                            </b>
+                        </p>
+                    </div>
+                    <!--###### MODAL BOX FOOTER Part Start ######-->
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral" 
+                                          label="Cancel"
+                                          title="Cancel"
+                                          onclick="{! c.closeModel }"/>
+                        <lightning:button variant="brand" 
+                                          label="Like and Close"
+                                          title="Like and Close"
+                                          onclick="{! c.likenClose }"/>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+            <!--###### MODAL BOX Part END Here ######-->
+            
+        </aura:if>
+    
+</aura:component>

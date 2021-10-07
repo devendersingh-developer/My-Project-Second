@@ -1,0 +1,60 @@
+<apex:page controller="CreatingWizard" showHeader="false" sidebar="false" standardStylesheets="false">
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">    
+<head>
+  <title>Nitin Indora</title>
+</head>
+<div class="slds"> 
+<c:WizerdHeaderVf />
+ 
+<div data-reactid=".5.0.1" role="alert" class="slds-notify slds-notify--alert slds-theme--inverse-text slds-theme--alert-texture slds-m-top--large">
+    <span class="slds-assistive-text">Success</span>
+    <h2><svg class="slds-icon icon-text-email slds-icon--small slds-m-right--x-small" aria-hidden="true">
+        <use xlink:href="{!URLFOR($Resource.SLDS080, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/></svg>
+        <span>New Customer Opportunity Step 1 of 3</span>
+    </h2>
+</div>
+     
+<apex:form >
+    <div class="slds-text-heading--medium">Account Information</div>
+    <div class="slds-form--stacked">
+      <div class="slds-form-element">
+        <label class="slds-form-element__label" for="accountName">Account Name</label>
+        <div class="slds-form-element__control">
+          <apex:inputField id="accountName" value="{!account.name}" styleclass="slds-input"/>
+        </div>
+      </div>
+      <div class="slds-form-element">
+        <label class="slds-form-element__label" for="accountSite">Account Site</label>
+        <div class="slds-form-element__control">
+          <apex:inputField id="accountSite" value="{!account.site}" styleclass="slds-input"/>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="slds-text-heading--medium slds-m-top--medium">Contact Information</div>    
+     <div class="slds-form--stacked">
+      <div class="slds-form-element">
+        <label class="slds-form-element__label" for="contactFirstName">First Name</label>
+        <div class="slds-form-element__control">
+          <apex:inputField id="contactFirstName" value="{!contact.firstName}" styleclass="slds-input"/>
+        </div>
+      </div>
+      <div class="slds-form-element">
+        <label class="slds-form-element__label" for="contactLastName">Last Name</label>
+        <div class="slds-form-element__control">
+          <apex:inputField id="contactLastName" value="{!contact.lastName}" styleclass="slds-input"/>
+        </div>
+      </div>
+      <div class="slds-form-element">
+        <label class="slds-form-element__label" for="contactPhone">Phone</label>
+        <div class="slds-form-element__control">
+          <apex:inputField id="contactPhone" value="{!contact.phone}" styleclass="slds-input"/>
+        </div>
+      </div>
+    </div>
+  
+   <apex:commandButton action="{!step2}" value="Next" styleClass="slds-button slds-button--brand slds-m-top--medium"/>
+</apex:form>
+</div>
+</html>
+</apex:page>

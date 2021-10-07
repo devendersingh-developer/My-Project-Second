@@ -1,0 +1,27 @@
+<apex:page controller="ClsSearchControl">
+        <h1>
+           This is search section
+        </h1>
+    <br/>    
+    <apex:form >
+        Please Enter the Country: <apex:inputText value="{!selectCountry}" />
+        Please Enter the City: <apex:inputText value="{!selectCity}" />
+        <apex:commandButton value="Search" action="{!fncSearch}"/>
+         <apex:commandButton value="Add" action="{!fncAdd}"/>
+    </apex:form>
+    <br/>
+    <table border="1" >
+        <tr>
+            <th>ID</th><th>User Area</th>
+            <th>User Country</th><th>User City</th>
+        </tr>
+        <apex:repeat var="cases" value="{!Emp}">
+        <tr>
+            <td>{!cases.Id }</td>
+            <td>{!cases.Area__c}</td>
+            <td>{!cases.Country__c}</td>
+            <td>{!cases.City__c}</td>
+        </tr>
+        </apex:repeat>
+  </table>
+</apex:page>

@@ -1,0 +1,81 @@
+<apex:page >
+    <!-- Styles -->
+    <style>
+        #chartdiv {
+        width: 50%;
+        height: 190px;
+        }
+        
+    </style>
+    
+    <!-- Resources -->
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    
+    <!-- Chart code -->
+        <script>
+        am4core.ready(function() {
+            
+            // Themes begin
+            am4core.useTheme(am4themes_animated);
+            // Themes end
+            
+            // Create chart instance
+            var chart = am4core.create("chartdiv", am4charts.PieChart);
+            
+            // Add data
+            chart.data = [{
+                "country": "Karan",
+                "litres": 501.9
+            }, {
+                "country": "Dev",
+                "litres": 301.9
+            }, {
+                "country": "Tarun",
+                "litres": 201.1
+            }, {
+                "country": "Germany",
+                "litres": 165.8
+            }, {
+                "country": "Australia",
+                "litres": 139.9
+            }, {
+                "country": "Austria",
+                "litres": 128.3
+            }, {
+                "country": "UK",
+                "litres": 99
+            }, {
+                "country": "Belgium",
+                "litres": 60
+            }, {
+                "country": "The Netherlands",
+                "litres": 50
+            }];
+            
+            // Add and configure Series
+            var pieSeries = chart.series.push(new am4charts.PieSeries());
+            pieSeries.dataFields.value = "litres";
+            pieSeries.dataFields.category = "country";
+            pieSeries.innerRadius = am4core.percent(70);
+            pieSeries.ticks.template.disabled = true;
+            pieSeries.labels.template.disabled = true;
+            
+            var rgm = new am4core.RadialGradientModifier();
+            rgm.brightnesses.push(-0.8, -0.8, -0.5, 0, - 0.5);
+            pieSeries.slices.template.fillModifier = rgm;
+            pieSeries.slices.template.strokeModifier = rgm;
+            pieSeries.slices.template.strokeOpacity = 0.4;
+            pieSeries.slices.template.strokeWidth = 0;
+            
+            chart.legend = new am4charts.Legend();
+            chart.legend.position = "right";
+            
+        }); // end am4core.ready()
+    </script>
+    
+    <!-- HTML -->
+    <div id="chartdiv"></div>
+    
+</apex:page>

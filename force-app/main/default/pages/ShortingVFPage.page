@@ -1,0 +1,35 @@
+<apex:page Controller="SampleController" readOnly="true"  sidebar="false">
+    <head>
+        <apex:includescript value="//code.jquery.com/jquery-1.11.1.min.js"/>
+        <apex:includescript value="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"/>
+        <apex:stylesheet value="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css"/>
+        <script>
+        j$ = jQuery.noConflict();
+        j$(document).ready( function () {
+            var accTable = j$('[id$="accTable"]').DataTable({
+                 
+            });
+        });
+        </script>
+    </head>
+    <body>
+        <table id="accTable" class="display">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Account Number</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <apex:repeat value="{!accList}" var="acc">
+                    <tr>
+                        <td>{!acc.Name}</td>
+                        <td>{!acc.AccountNumber}</td>
+                        <td>{!acc.Phone}</td>
+                    </tr>
+                </apex:repeat>
+            </tbody>
+        </table>
+    </body>
+</apex:page>

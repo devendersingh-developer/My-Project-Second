@@ -1,0 +1,16 @@
+<apex:page standardController="Contact" recordSetVar="contactList">
+    <table border="0" >
+        <tr>
+            <th>FirstName</th><th>LastName</th>
+            <th>Email</th><th>Account Name</th>
+        </tr>
+        <apex:repeat var="cases" value="{!contactList}">
+        <tr>
+            <td>{!cases.FirstName}</td>
+            <td>{!cases.LastName}</td>
+            <td>{!cases.Email}</td>
+            <td>{!cases.Account.Name }</td>
+        </tr>
+        </apex:repeat>
+  </table>
+</apex:page>

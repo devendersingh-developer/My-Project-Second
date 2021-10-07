@@ -1,0 +1,8 @@
+<aura:component >
+    <aura:attribute name="recordList" type="Object"/>
+    <div>
+        <aura:iteration items="{!v.recordList}" var="item">
+            {!item.id} --{!item.FirstName}
+        </aura:iteration>
+    </div>
+</aura:component>

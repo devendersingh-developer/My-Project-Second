@@ -1,0 +1,61 @@
+<apex:page controller="CreatingWizard" showHeader="false" sidebar="false" standardStylesheets="false">
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">    
+<head>
+  <title>Nitin Indora</title>
+  <apex:stylesheet value="{!URLFOR($Resource.SLDS080, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+</head>
+<div class="slds">
+    <c:WizerdHeaderVf />
+ 
+    <div data-reactid=".5.0.1" role="alert" class="slds-notify slds-notify--alert slds-theme--inverse-text slds-theme--alert-texture slds-m-top--large">
+        <span class="slds-assistive-text">Success</span>
+        <h2><svg class="slds-icon icon-text-email slds-icon--small slds-m-right--x-small" aria-hidden="true">
+            <use xlink:href="{!URLFOR($Resource.SLDS080, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/></svg>
+            <span>New Customer Opportunity Step 2 of 3</span>
+        </h2>
+    </div>
+  
+ <apex:form >
+ <div class="slds-text-heading--medium slds-m-top--medium">Opportunity Information</div>         
+      <div class="slds-form--stacked">
+      <div class="slds-form-element">
+        <label class="slds-form-element__label" for="opportunityName">Opportunity Name</label>
+        <div class="slds-form-element__control">
+          <apex:inputField id="opportunityName" value="{!opportunity.name}" styleclass="slds-input"/>
+        </div>
+      </div>
+      <div class="slds-form-element">
+        <label class="slds-form-element__label" for="opportunityAmount">Amount</label>
+        <div class="slds-form-element__control">
+          <apex:inputField id="opportunityAmount" value="{!opportunity.amount}" styleclass="slds-input"/>
+        </div>
+      </div>
+      <div class="slds-form-element">
+        <label class="slds-form-element__label" for="opportunityCloseDate">Close Date</label>
+        <div class="slds-form-element__control">
+          <apex:inputField id="opportunityCloseDate" value="{!opportunity.closeDate}" styleclass="slds-input"/>
+        </div>
+      </div>
+       
+      <div class="slds-form-element">
+        <label class="slds-form-element__label" for="opportunityStageName">Stage</label>
+        <div class="slds-form-element__control">
+          <apex:inputField id="opportunityStageName" value="{!opportunity.stageName}" styleclass="slds-input"/>
+        </div>
+      </div>
+       
+      <div class="slds-form-element">
+        <label class="slds-form-element__label" for="contactRole">Role for Contact {!contact.firstName} {!contact.lastName}</label>
+        <div class="slds-form-element__control">
+          <apex:inputField id="contactRole" value="{!role.role}" styleclass="slds-input"/>
+        </div>
+      </div>
+       
+    </div>
+       
+    <apex:commandButton action="{!step1}" value="Previous" styleClass="slds-button slds-button--brand slds-m-top--medium"/>
+    <apex:commandButton action="{!step3}" value="Next" styleClass="slds-button slds-button--brand slds-m-left--medium slds-m-top--medium"/>
+  </apex:form>
+  </div>
+  </html>
+</apex:page>

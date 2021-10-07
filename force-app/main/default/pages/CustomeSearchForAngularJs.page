@@ -1,0 +1,32 @@
+<apex:page applyHtmlTag="false"  applyBodyTag="false" showHeader="false" sidebar="false" standardStylesheets="false">
+    <html>
+        <head>
+            <title>Data List Example in AngularJs</title>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"/><script>
+            <apex:remoteObjects >
+                <apex:remoteObjectModel name="Contact" fields="Id,FirstName,Fax" jsShorthand="dbContact"/>
+            </apex:remoteObjects>
+                <script>
+                    var app=angular.module('myApp',[]);
+                    app.controller('myCtr',function($scope){
+                    $scope.sortType='FirstName';
+                    $scope.sortReverse=false;
+                    $scope.contacts=[];
+                    $scope.searchText='';                       
+                        $scope.fetchContacts=function(){
+                        
+                        
+                        }
+                    
+                    });
+                </script>
+        </head>
+        <body>
+            
+            <div class="container" ng-app="myApp" ng-controller="myCtr" ng-init="fetchContacts()">
+                
+                
+            </div>
+        </body>
+    </html>
+</apex:page>
