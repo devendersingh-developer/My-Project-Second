@@ -3,6 +3,7 @@ public class AccountCreationController {
     @AuraEnabled
     public static Account CreateAccount(Account AccountObject){
         system.debug(' 5 AccountObject ==> '+AccountObject);
+        //fgsfgdfhs
         try{
             insert AccountObject;
             return AccountObject;
